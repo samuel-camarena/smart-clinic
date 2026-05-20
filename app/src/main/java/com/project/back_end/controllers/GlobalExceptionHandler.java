@@ -48,8 +48,21 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(CustomCredentialNotFoundException.class)
     public ProblemDetail handleCustomCredentialNotFound(CustomCredentialNotFoundException ex) {
-        logger.warn("{}Security:: Credentials Error: {}", MsgHeader.ERROR.compose(), ex.getMessage());
+        logger.error("[Security::Credentials Error]: {}", ex.getMessage());
         return composeProblem(ex.getStatus(), ex.getMessage());
+    }
+    
+    @ExceptionHandler(AuthenticationException.class)
+    public ProblemDetail handleAuthentication(AuthenticationException ex) {
+        ErrorDTO errorDto = new ErrorDTO();
+        FieldError field = new FieldError("", ex.getInvalidField(), ex.getMessage());
+        
+        errorDto.getMetadata()
+            .put("numFieldErrors", String.valueOf(1));
+        errorDto
+            .addFieldErrors(field);
+        logger.error("[Security::Credentials Error]: {}", ex.getMessage());
+        return composeProblemWithErrorDTO(ex.getStatus(), ex.getMessage(), errorDto);
     }
     
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -92,6 +105,14 @@ public class GlobalExceptionHandler {
         return pd;
     }
     
+    private ProblemDetail composeProblemWithErrorDTO(HttpStatus status, String message, ErrorDTO errorDto) {
+        ProblemDetail pd =  ProblemDetail.forStatusAndDetail(status, message);
+        pd.setProperties(Map.of("message", message));
+        pd.setProperties(Map.of("error", message));
+        pd.setProperties(Map.of("fieldErrors", errorDto.fieldErrors));
+        return pd;
+    }
+    
     public class ErrorDTO {
         private final Map<String, String> metadata;
         private final Map<String, String> data;
@@ -116,21 +137,21 @@ public class GlobalExceptionHandler {
         }
         
         public void addFieldErrors(FieldError field) {
-            if (field == null || field.getField().isBlank() || field.getDefaultMessage() == null) {
+            if (field == null || field.getField().isBlank() || field.getDefaultMessage() == null)
                 return;
-            }
-            String fieldName = field.getField();
-            if (fieldErrors.containsKey(field.getField())) {
+            
+            String name = field.getField();
+            String defaultMsg = field.getDefaultMessage();
+            if (fieldErrors.containsKey(name)) {
                 fieldErrors
-                    .get(field.getField())
-                    .add(field.getDefaultMessage());
+                    .get(name)
+                    .add(defaultMsg);
             } else {
                 List<String> fieldMessages = new ArrayList<>();
-                fieldMessages.add(field.getDefaultMessage());
-                fieldErrors.put(fieldName, fieldMessages);
+                fieldMessages.add(defaultMsg);
+                fieldErrors.put(name, fieldMessages);
             }
         }
-        
         
 //        private class FieldErrorDTO {
             //private final Map<String, List<String>> fieldErrors2;

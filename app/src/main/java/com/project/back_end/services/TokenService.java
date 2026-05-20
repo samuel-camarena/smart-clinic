@@ -5,7 +5,6 @@ import com.project.back_end.exceptions.ParseJwtTokenException;
 import com.project.back_end.repo.AdminRepository;
 import com.project.back_end.repo.DoctorRepository;
 import com.project.back_end.repo.PatientRepository;
-import com.project.back_end.utils.outputhelpers.MessageFormatter.MsgHeader;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.slf4j.Logger;
@@ -88,17 +87,6 @@ public class TokenService {
     }
     
     /**
-     * This method extracts the admin's username (subject) from the provided JWT token.<p>
-     * * The token is first verified using the signing key to ensure it hasn’t been tampered with.<br>
-     * * After verification, the token is parsed, and the subject (which represents the username) is extracted.</p>
-     * @param token JWT token to be parsed.
-     * @return username extracted from subject.
-     */
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
-    
-    /**
      * This method extracts the expiration date from the provided JWT token.<p>
      * @param token JWT token to be parsed.
      * @return Date claim of expiration.
@@ -161,13 +149,12 @@ public class TokenService {
      *         it returns false, indicating the token is invalid.
      */
     public boolean isValidToken(String token, String user) {
-        String identifier = (user.equals("admin")) ? extractUsername(token) : extractEmail(token);
-        
-        boolean userExists = switch (user) {
-            case "admin" -> adminRepo.findByUsername(extractUsername(token)).isPresent();
-            case "doctor" -> doctorRepo.findByEmail(extractEmail(token)).isPresent();
-            case "patient" -> patientRepo.findByEmail(extractEmail(token)).isPresent();
-            default -> false;
+        boolean userExists =
+            switch (user) {
+                case "admin" -> adminRepo.findByEmail(extractEmail(token)).isPresent();
+                case "doctor" -> doctorRepo.findByEmail(extractEmail(token)).isPresent();
+                case "patient" -> patientRepo.findByEmail(extractEmail(token)).isPresent();
+                default -> false;
         };
         
         if (!userExists) {

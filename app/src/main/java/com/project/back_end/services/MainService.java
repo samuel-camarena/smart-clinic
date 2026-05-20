@@ -123,7 +123,7 @@ public class MainService {
      * * If an admin is found, it checks if the password matches.<br>
      * * If the password is correct, it generates and returns a JWT token (using the admin’s email)<br>
      * * If the password is incorrect or admin is not found throws a `CustomCredentialNotFoundException`.<br>
-     * * If any unexpected error occurs during the process, throws an 'InternalServerErrorException`.</p>
+     * * If any unexpected error occurs during the process, throws an `InternalServerErrorException`.</p>
      * @param email - as user identifier
      * @param password password
      * @return returns a JWT token (using the admin’s email)
@@ -230,9 +230,9 @@ public class MainService {
                 return opDoctor.get().getId();
             }
             case "admin" -> {
-                Optional<Admin> opAdmin = adminRepo.findByEmail(tokenService.extractUsername(token));
+                Optional<Admin> opAdmin = adminRepo.findByEmail(tokenService.extractEmail(token));
                 if (opAdmin.isEmpty())
-                    throw new ResourceNotFoundException("Admin not found by username: " + tokenService.extractUsername(token));
+                    throw new ResourceNotFoundException("Admin not found by username: " + tokenService.extractEmail(token));
                 return opAdmin.get().getId();
             }
             default -> throw new IllegalStateException("Unexpected value: " + user);

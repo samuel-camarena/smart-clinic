@@ -14,20 +14,23 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     
-    @NotNull(message = USERNAME_NOT_NULL_MSG)
-    @Size(min = USERNAME_SIZE_MIN, max = USERNAME_SIZE_MAX, message = USERNAME_INVALID_SIZE_MSG)
-    private String username;
+    @NotBlank(message = EMAIL_NOT_BLANK_MSG)
+    @Column(unique = true, name = "email")
+    //@Email(regexp = "${email-validation-regex}", message = EMAIL_INVALID_REGEX_MSG)
+    @Email(regexp = "^[a-zA-Z0-9_+&*-]+(?:.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,}$", message = EMAIL_INVALID_REGEX_MSG)
+    private String email;
     
     @NotNull(message = PASSWORD_SIMPLE_NOT_BLANK_MSG)
-    @Pattern(regexp = PASSWORD_SIMPLE_VALIDATION_REGEX, message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
+    //@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$", message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$", message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     
     public Admin() {
     }
     
-    public Admin(String username, String password) {
-        this.username = username;
+    public Admin(String email, String password) {
+        this.email = email;
         this.password = password;
     }
     
@@ -39,12 +42,12 @@ public class Admin {
         this.id = id;
     }
     
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
     
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     public String getPassword() {

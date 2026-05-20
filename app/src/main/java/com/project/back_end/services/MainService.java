@@ -8,7 +8,6 @@ import com.project.back_end.models.Patient;
 import com.project.back_end.repo.AdminRepository;
 import com.project.back_end.repo.DoctorRepository;
 import com.project.back_end.repo.PatientRepository;
-import com.project.back_end.utils.TimePeriodOfDay;
 import com.project.back_end.utils.outputhelpers.MessageFormatter.MsgHeader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -108,12 +107,11 @@ public class MainService {
         }
     }
     
-    public String validateUserLogin(String username, String password, String role) {
-        // prepare for role = "clinic staff", or "staff".
+    public String validateUserLogin(String email, String password, String role) {
         return switch (role) {
-            case "admin" -> validateAdminLogin(username, password);
-            case "doctor" -> validateDoctorLogin(username, password);
-            case "patient" -> validatePatientLogin(username, password);
+            case "admin" -> validateAdminLogin(email, password);
+            case "doctor" -> validateDoctorLogin(email, password);
+            case "patient" -> validatePatientLogin(email, password);
             default -> throw new CustomCredentialNotFoundException("Wrong role for user login");
         };
     }
@@ -121,25 +119,25 @@ public class MainService {
     /**
      * This method validates the login credentials for an admin user. Ensures that only valid `admin` users
      * can access secured parts of the system.<p>
-     * * It first searches the admin repository using the provided username.<br>
+     * * It first searches the admin repository using the provided email.<br>
      * * If an admin is found, it checks if the password matches.<br>
-     * * If the password is correct, it generates and returns a JWT token (using the admin’s username)<br>
+     * * If the password is correct, it generates and returns a JWT token (using the admin’s email)<br>
      * * If the password is incorrect or admin is not found throws a `CustomCredentialNotFoundException`.<br>
      * * If any unexpected error occurs during the process, throws an 'InternalServerErrorException`.</p>
-     * @param username username
+     * @param email - as user identifier
      * @param password password
-     * @return returns a JWT token (using the admin’s username)
+     * @return returns a JWT token (using the admin’s email)
      */
-    public String validateAdminLogin(String username, String password) {
-        Optional<Admin> admin = adminRepo.findByUsername(username);
+    public String validateAdminLogin(String email, String password) {
+        Optional<Admin> admin = adminRepo.findByEmail(email);
         if (admin.isEmpty())
-            throw new CustomCredentialNotFoundException("Wrong username for Admin login");
+            throw new AuthenticationException("Wrong email for Admin login", "identifier");
         if (!admin.get().getPassword().equals(password))
-            throw new CustomCredentialNotFoundException("Wrong password for Admin login");
+            throw new AuthenticationException("Wrong password for Admin login", "password");
         
-        String token = tokenService.generateToken(admin.get().getUsername());
+        String token = tokenService.generateToken(admin.get().getEmail());
         logger.info("{}validateAdminLogin:: {}", MsgHeader.SUCCESS.compose(),
-            "LoginDTO Admin success with username: " + username);
+            "LoginDTO Admin success with email: " + email);
         return token;
     }
     
@@ -232,7 +230,7 @@ public class MainService {
                 return opDoctor.get().getId();
             }
             case "admin" -> {
-                Optional<Admin> opAdmin = adminRepo.findByUsername(tokenService.extractUsername(token));
+                Optional<Admin> opAdmin = adminRepo.findByEmail(tokenService.extractUsername(token));
                 if (opAdmin.isEmpty())
                     throw new ResourceNotFoundException("Admin not found by username: " + tokenService.extractUsername(token));
                 return opAdmin.get().getId();

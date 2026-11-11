@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**
- * This class handles routing to admin and doctor dashboard pages based on token validation.
+ * This class handles routing to admin and doctor dashboard page-templates based on token validation.
  */
 @Controller
 public class DashboardController {
@@ -38,7 +38,10 @@ public class DashboardController {
     @GetMapping("/adminDashboard/{token}")
     public String adminDashboard(@PathVariable @Valid String token) {
         mainService.validateToken(token, "admin");
-        return "dashboards/adminDashboard"; // "redirect:/admin/adminDashboard";
+        //return "static/admin-contents/page-templates/dashboard/adminDashboard"; // "redirect:/admin/adminDashboard";
+        //return "templates/dashboards/adminDashboard";
+        //return "static/adminDashboard";
+        return "static/admin-contents/pages/adminDashboard";
     }
     
     /**

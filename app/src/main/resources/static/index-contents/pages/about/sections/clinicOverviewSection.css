@@ -1,0 +1,83 @@
+
+.clinic-overview-section {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-sp-0, 0) 10px var(--spacing-sp-150, 150px) 10px;
+    justify-content: center;
+    align-items: center;
+    /* gap: 10px; */
+    row-gap: 100px;
+    align-self: stretch;
+}
+
+.clinic-overview-article {
+    display: flex;
+    width: 1003px;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-bottom: 100px */
+}
+
+.clinic-overview-article:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.clinic-overview-article .article-text-container {
+    display: flex;
+    padding: 0 var(--spacing-sp-24, 24px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sp-12, 12px);
+    flex: 1 0 0;
+}
+
+.clinic-overview-article .article-header {
+    margin: 0;
+}
+
+.clinic-overview-article .article-title {
+    margin: 0;
+
+    color: var(--colors-blue-600, #007D99);
+    font-family: var(--font-family-nunito-sans), sans-serif;
+    font-size: var(--font-size-h3, 24px);
+    font-style: normal;
+    font-weight: var(--font-weight-bold, 700);
+    line-height: normal;
+}
+
+.clinic-overview-article .article-description {
+    margin: 0;
+
+    color: var(--colors-black, #000);
+    font-family: var(--font-family-nunito-sans), sans-serif;
+    font-size: var(--font-size-p, 16px);
+    font-style: normal;
+    font-weight: var(--font-weight-regular, 400);
+    line-height: normal;
+}
+
+/*
+Ejemplo de uso de background  img:
+    # Main Content Section (`.main-content`)
+    - Purpose: Layout the main content with padding and a background image.
+    - Properties:
+        - `flex-grow: 1` — lets the content fill the available vertical space.
+        - `padding: 40px` — adds internal spacing around content.
+        - `display: flex` and `flex-direction: column` — organizes content in a vertical stack.
+        - `justify-content: center` — Align (center) the items on the main axis (horizontally).
+        - `align-items: center` - Align (center) the items on the main axis (horizontally).
+        - `background-image: url("index.png")` — sets a full-screen dashboard background.
+        - `background-size: cover` — ensures the image covers the whole section.
+        - `background-position: center` — centers the image.
+        - `background-repeat: no-repeat` — avoids tiling the image.
+        - `background-attachment: fixed` — fixes the image while scrolling.
+*/
+.clinic-overview-article .article-img {
+    width: 650px;
+    height: 300px;
+    flex-shrink: 0;
+
+    border-radius: var(--border-radius-12, 12px);
+    /* background: url(<path-to-image>) lightgray 50% / cover no-repeat; */
+}

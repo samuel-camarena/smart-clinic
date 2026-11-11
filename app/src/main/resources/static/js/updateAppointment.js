@@ -1,6 +1,6 @@
 // updateAppointment.js
 import { updateAppointment } from "../js/services/appointmentRecordService.js";
-import { getDoctors } from "../js/services/doctorServices.js";
+import { getAllDoctors } from "./doctor-contents/dashboard/services/doctorService.js";
 document.addEventListener("DOMContentLoaded", initializePage);
 
 async function initializePage() {
@@ -23,7 +23,7 @@ async function initializePage() {
   }
 
   // get doctor to display only the available time of doctor
-  getDoctors()
+  getAllDoctors()
     .then(doctors => {
       // Find the doctor by the ID from the URL
       const doctor = doctors.find(d => d.id == doctorId);
@@ -39,12 +39,13 @@ async function initializePage() {
       document.getElementById("appointmentTime").value = appointmentTime;
 
       const timeSelect = document.getElementById("appointmentTime");
-      doctor.availableTimes.forEach(time => {
-        const option = document.createElement("option");
-        option.value = time;
-        option.textContent = time;
-        timeSelect.appendChild(option);
-      });
+      doctor.availableTimes
+        .forEach(time => {
+          const option = document.createElement("option");
+          option.value = time;
+          option.textContent = time;
+          timeSelect.appendChild(option);
+        });
 
       // Handle form submission for updating the appointment
       document.getElementById("updateAppointmentForm").addEventListener("submit", async (e) => {

@@ -1,0 +1,176 @@
+/*
+@import '../../../common-contents/ui/components/advance/cards/card-headers/entity-card-headers/entityCardHeader.css';
+@import '../../../common-contents/ui/components/advance/cards/card-bodies/entity-card-bodies/entityCardBody.css';
+@import '../../../common-contents/ui/components/advance/cards/card-footers/entity-card-footers/entityCardFooter.css';
+*/
+@import "../../../common-contents/components/modals/commonModalUtils.css";
+
+.modal#doctorModal {
+
+  & .modal-overlay {
+
+    > .modal-box {
+      display: inline-flex;
+      padding: var(--spacing-sp-48, 48px);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--spacing-sp-48, 48px);
+      position: relative;
+      margin: 110px var(--spacing-sp-24, 24px) auto auto;
+
+      max-width: 500px;
+      /* animation: fadeIn 0.5s ease-in-out; */
+      border-radius: var(--border-radius-24, 24px);
+      background: var(--colors-white, #FFF);
+      box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.12);
+
+      > header {
+        /* Preparar para extraer a commonFormularyModals sustituyendo a commonModalUtils */
+        display: flex;
+        align-items: flex-start;
+        /* gap: var(--spacing-sp-0, 0); */
+        width: 100%;
+        justify-content: space-between;
+
+        & .title-container {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          width: 297px;
+
+          & h1 {
+            font-size: var(--font-size-h3, 24px);
+            /* margin-bottom: 40px; */
+            /*
+            text-align: center;
+            font-size: 36px;
+            color: #222;
+             */
+          }
+
+          & h2 {
+            text-align: center;
+            font-size: var(--font-size-p, 16px);
+            font-weight: var(--font-weight-regular, 400);
+           }
+
+        }
+
+        & #closeModalButton {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          border: none;
+          background: inherit;
+          color: var(--colors-grey-500, #7F7F7F);
+
+          &:hover {
+            background: var(--colors-grey-100);
+            color: var(--colors-grey-750, #404040);
+          }
+        }
+      }
+
+      > #modalBody {
+        width: 100%;
+
+        & form {
+          display: flex;
+          flex-direction: column;
+          row-gap: var(--spacing-sp-48, 48px);
+
+          & .user-input {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sp-12, 12px);
+            position: relative;
+
+            & label {
+              margin-bottom: 0;
+              font-size: var(--font-size-p, 16px);
+              font-weight: var(--font-weight-bold, 700);
+            }
+
+            & input {
+              width: 100%;
+              /* margin-bottom: 31px; */
+              position: relative;
+
+              & .error {
+                outline: red solid 1px; /* Utilizar "!important" para asegurar que al estilizar un error, no se sobreescribirá este estilo, por la pseudo-clase :valid */
+              }
+            }
+
+            & p.complementary-text {
+              position: absolute;
+              top: 90px;
+              color: var(--colors-red-600, #CC0003);
+              font-size: var(--font-size-p-2, 14px);
+
+              &.show {
+                display: flex;
+                color: red;
+              }
+
+              &.hide {
+                display: none;
+                /* color: transparent; */
+              }
+            }
+
+            & .is-field-valid:invalid {
+              outline: red solid 1px;
+            }
+          }
+
+          & .checkboxes-group {
+            display: flex;
+            flex-direction: column;
+            row-gap: 0;
+
+            & .availability-checkbox-label {
+              display: flex;
+              justify-content: left;
+              column-gap: 10px;
+
+              & .availability-checkbox {
+                width: auto;
+              }
+            }
+          }
+
+          /*
+          & .inline-button {
+            display: flex;
+            width: 100%;
+          }
+           */
+
+          & .inline-buttons {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sp-24, 24px);
+
+            & button {
+              width: 100%;
+            }
+          }
+          /*
+          & .is-field-valid:invalid {
+            outline: red solid 1px;
+          }
+
+           */
+        }
+      }
+
+      > footer {
+        display: inline-flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+}

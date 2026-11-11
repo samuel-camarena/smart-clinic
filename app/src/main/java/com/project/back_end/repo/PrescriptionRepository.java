@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * The repository extends MongoRepository<Prescription, String>, which provides
- * basic CRUD functionality for MongoDB.
+ * basics CRUD functionality for MongoDB.
  * <br>- This allows the repository to perform operations like save, deleteDoctor, updateDoctor, and find
  * without needing to implement these methods manually.
  * <br>- MongoRepository is tailored for working with MongoDB, unlike JPARepository

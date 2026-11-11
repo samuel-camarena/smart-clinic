@@ -1,0 +1,173 @@
+body {
+  /* Components Layout Sizes */
+  --header-min-height: 85px;
+  --footer-min-height: 320px;
+  --sidebar-min-width: 230px;
+
+  /* Grid Layouts */
+  --grid-template-areas-dashboar:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+}
+
+body.dashboard-body {
+  display: grid;
+  grid-template-columns: var(--sidebar-min-width) 1fr 1fr;
+  /* grid-template-rows: var(--header-min-height) minmax(100vh, 1fr) var(--footer-min-height); */
+  grid-template-rows: var(--header-min-height) auto var(--footer-min-height);
+  grid-template-areas: var(--grid-template-areas-dashboar);
+  width: 100vw;
+  min-height: 100vh;
+  background: var(--colors-grey-25, #F7F7F7);
+}
+
+body > header {
+  grid-area: header;
+}
+
+body > aside {
+  grid-area: sidebar;
+}
+
+body > main {
+  grid-area: main;
+}
+
+body > footer {
+  grid-area: footer;
+}
+
+.dashboard-main {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  /* min-height: 100vh; */
+  /* flex-grow: 1; */
+  padding: 20px 40px;
+  row-gap: 40px;
+
+  background: var(--colors-grey-15, #FAFAFA);
+}
+
+/*
+.dashboard-main .appointmentsTable {
+    display: none;
+}
+
+.dashboard-main .main-tabs .entities-section {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.dashboard-main .main-header {
+    display: flex;
+    flex-direction: row;
+    padding: 0 20px;
+}
+*/
+.dashboard-main .main-content {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(315px, 1fr)); */
+  grid-template-columns: repeat(auto-fit, min(315px));
+  gap: 40px;
+  padding: 20px;
+}
+
+.main-header .entity-management-section {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  margin-top: 20px
+}
+
+
+/*  Use a `16px` italic grey font to indicate no data gently. */
+p #noDataFoundP {
+  font-size: 16px;
+  color: grey;
+  font-style: italic;
+}
+
+/*
+
+.main-header .search-section {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.search-section .search-title {
+    display: block;
+}
+
+.search-title label {
+    font-weight: bold;
+}
+
+.search-section .search-elements {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-elements .search-bar{
+    height: 40px;
+    width: 330px;
+    margin-bottom: 30px;
+    margin-right: 8px;
+    padding: 0 20px;
+    font-size: 16px;
+    border: 0.2px solid grey;
+}
+
+.search-elements .search-bar:focus{
+    outline: none;
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+}
+
+.main-header .filter-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-section .filter-title {
+    display: block;
+}
+
+.filter-title label {
+    font-weight: bold;
+}
+
+.filter.section .filter-elements {
+    display: flex;
+    flex-direction: row;
+}
+
+.filter-elements .filter-select {
+    height: 40px;
+    margin-right: 8px;
+    width: auto;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filter-elements .filter-select:focus {
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+    outline: none;
+}
+
+*/

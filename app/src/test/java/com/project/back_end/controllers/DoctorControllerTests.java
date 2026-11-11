@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -54,14 +51,17 @@ public class DoctorControllerTests {
     private final String BASE_URL = "/v1/doctor";
     
     private MockHttpServletRequestBuilder getBaseRequest(String endpoint, String username, String token) {
-        request = get(BASE_URL + endpoint);
-        if (username != null)
-            request.header("X-User", username);
-        
-        if (token != null)
-            request.header("Authorization", token);
-        
-        return request;
+        //request = get(BASE_URL + endpoint);
+        String pathParams = "";
+        if (username != null) {
+            //request("X-User", username);
+            pathParams += "/" + username;
+        }
+        if (token != null) {
+            //request.header("Authorization", token);
+            pathParams += "/" + token;
+        }
+        return get(BASE_URL + endpoint + pathParams);
     }
     
     @Nested
@@ -137,13 +137,12 @@ public class DoctorControllerTests {
             
             @BeforeEach
             void setupRequestWithHeaders() throws Exception {
-                request = getBaseRequest("/availability", INVALID_USER_NAME, INVALID_AUTH_TOKEN);
+                request = getBaseRequest("/availability/", INVALID_USER_NAME, INVALID_AUTH_TOKEN);
             }
             
             @BeforeEach
             void setupStubs() throws Exception {
-                when(mainService.isValidToken(INVALID_AUTH_TOKEN, INVALID_USER_NAME))
-                    .thenReturn(true);
+                //when(mainService.validateToken(INVALID_AUTH_TOKEN, INVALID_USER_NAME)).
             }
             
             @Nested
@@ -162,7 +161,7 @@ public class DoctorControllerTests {
                         .andExpect(status().isUnauthorized())
                         .andExpect(content().string(""));
                     
-                    verify(mainService).isValidToken(INVALID_AUTH_TOKEN, INVALID_USER_NAME);
+                    verify(mainService).validateToken(INVALID_AUTH_TOKEN, INVALID_USER_NAME);
                     verifyNoInteractions(doctorService);
                 }
             }
@@ -199,8 +198,8 @@ public class DoctorControllerTests {
             
             @BeforeEach
             void setupStubs() throws Exception {
-                when(mainService.isValidToken(VALID_AUTH_TOKEN, VALID_USER_NAME))
-                    .thenReturn(true);
+//                when(mainService.validateToken(VALID_AUTH_TOKEN, VALID_USER_NAME))
+//                    .thenReturn(void);
             }
             
             @Nested

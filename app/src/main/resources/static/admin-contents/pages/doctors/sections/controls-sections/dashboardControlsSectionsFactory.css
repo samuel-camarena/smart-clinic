@@ -1,0 +1,14 @@
+@import "./controls-sections-layouts/inline-controls-section/inlineControlsSection.css";
+/* TODO: llamar a inlineControlsSection CSS */
+
+.dashboard-controls-section {
+  display: flex;
+  /* min-height: 100vh; */
+  align-items: baseline;
+  gap: 40px;
+  background: inherit;
+
+  & :last-child {
+    margin-left: auto;
+  }
+}

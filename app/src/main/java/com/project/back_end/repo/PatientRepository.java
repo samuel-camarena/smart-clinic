@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * This repository extends `JpaRepository<Patient, Long>`, which provides basic CRUD functionality.
+ * This repository extends `JpaRepository<Patient, Long>`, which provides basics CRUD functionality.
  * <br>- This allows the repository to perform operations like save, deleteDoctor, updateDoctor, and find
  *   without needing to implement these methods manually.
  * <br>- JpaRepository also includes features like pagination and sorting.

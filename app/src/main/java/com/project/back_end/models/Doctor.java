@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.Range;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import static com.project.back_end.config.EntityConstraintsConfig.*;
 
@@ -25,23 +28,31 @@ public class Doctor {
     
     @NotBlank(message = EMAIL_NOT_BLANK_MSG)
     @Column(unique = true, name = "email")
-    @Email(regexp = EMAIL_VALIDATION_REGEX, message = EMAIL_INVALID_REGEX_MSG)
+    //@Email(regexp = "${email-validation-regex}", message = EMAIL_INVALID_REGEX_MSG)
+    @Email(regexp = "^[a-zA-Z0-9_+&*-]+(?:.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+.)+[a-zA-Z]{2,}$", message = EMAIL_INVALID_REGEX_MSG)
     private String email;
     
     @NotBlank(message = PASSWORD_SIMPLE_NOT_BLANK_MSG)
-    @Pattern(regexp = PASSWORD_SIMPLE_VALIDATION_REGEX, message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$", message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
+    // TODO: Jackson’s @JsonIgnore is used to prevent the password field from being serialized into JSON.
+    // When updating a Doctor's data, the password is a field requiered by Jakarta with @Validate in DoctorController,
+    // so in order to achieve update a Doctor object, been validated by Jakarta, we should to figure out how to
+    // not send doctor's password to front-end, at same time we can update the object send via Front-end formulary to update selected doctor.??
+    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     
     @NotBlank(message = PHONE_NOT_BLANK_MSG)
     @Pattern(regexp = PHONE_VALIDATION_REGEX, message = PHONE_INVALID_PATTERN_MSG)
     private String phone;
     
+    @NotBlank(message = NOT_BLANK_MSG)
+    private String photoName;
+    
     @NotEmpty(message = AVAILABLE_TIMES_NOT_EMPTY_MSG)
     @ElementCollection
     private List<String> availableTimes;
     
-    @NotNull(message = YEARS_OF_EXP_NOT_NULL_MSG)
+    @NotNull(message = YEARS_OF_EXP_NOT_NULL_MSG) // TODO: Years of experience been blank from Front-end passes Validation Integrity
     @Range(min = YEARS_OF_EXP_RANGE_MIN, max = YEARS_OF_EXP_RANGE_MAX, message = YEARS_OF_EXP_INVALID_RANGE_MSG)
     private int yearsOfExperience;
     
@@ -55,11 +66,12 @@ public class Doctor {
 
     public Doctor() {}
     
-    Doctor(String name, String specialty, String email, String password, String phone,
+    Doctor(String name, String specialty, String email, String password, String phone, String photoName,
                   List<String> availableTimes, int yearsOfExperience, String clinicAddress, double rating) {
         setName(name);
         setSpecialty(specialty);
         setEmail(email);
+        setPhotoName(photoName);
         setPassword(password);
         setPhone(phone);
         setAvailableTimes(availableTimes);
@@ -75,6 +87,7 @@ public class Doctor {
         setEmail(builder.email);
         setPassword(builder.password);
         setPhone(builder.phone);
+        setPhotoName(builder.photoName);
         setAvailableTimes(builder.availableTimes);
         setYearsOfExperience(builder.yearsOfExperience);
         setClinicAddress(builder.clinicAddress);
@@ -102,7 +115,12 @@ public class Doctor {
     }
     
     public void setSpecialty(String specialty) {
-        this.specialty = specialty;
+        //this.specialty = specialty;
+        setSpecialtyCapitalized(specialty);
+    }
+    
+    public void setSpecialtyCapitalized(String specialty) {
+        this.specialty = specialty.substring(0,1).toUpperCase() + specialty.substring(1);
     }
     
     public String getEmail() {
@@ -127,6 +145,14 @@ public class Doctor {
     
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public String getPhotoName() {
+        return photoName;
+    }
+    
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
     
     public List<String> getAvailableTimes() {
@@ -161,31 +187,20 @@ public class Doctor {
         this.rating = rating;
     }
     
-    public static String extractStartingTimeFromTimeSlot(String timeSlot) {
-        return timeSlot.split("-")[0]; // "10:00-11:00" -> "10:00"
-    }
-    
-    public static boolean isTimeSlotAvailable(String timeSlot, List<String> availableTimeSlots) {
-        return availableTimeSlots
-            .stream()
-            .anyMatch(
-                t -> extractStartingTimeFromTimeSlot(t)
-                    .contentEquals(extractStartingTimeFromTimeSlot(timeSlot)));
-    }
-    
     @Override
     @Transient
     public String toString() {
         return "Doctor: { " +
             "ID: " + id +
-            ", Name: '" + name + '\'' +
-            ", Specialty: '" + specialty + '\'' +
-            ", Email: '" + email + '\'' +
-            ", Password: '" + password + '\'' +
-            ", Phone: '" + phone + '\'' +
+            ", Name: '" + name +
+            ", Specialty: '" + specialty +
+            ", Email: '" + email +
+            ", Password: '" + password +
+            ", Phone: '" + phone +
+            ", PhotoName: '" + photoName +
             ", AvailableTimes: " + availableTimes +
             ", YearsOfExperience: " + yearsOfExperience +
-            ", ClinicAddress: '" + clinicAddress + '\'' +
+            ", ClinicAddress: '" + clinicAddress +
             ", Rating: " + rating +
             " }";
     }
@@ -197,6 +212,7 @@ public class Doctor {
         private String email;
         private String password;
         private String phone;
+        private String photoName;
         private List<String> availableTimes;
         private int yearsOfExperience;
         private String clinicAddress;
@@ -229,6 +245,11 @@ public class Doctor {
         
         public Builder phone(String phone) {
             this.phone = phone;
+            return this;
+        }
+        
+        public Builder photoName(String photoName) {
+            this.photoName = photoName;
             return this;
         }
         

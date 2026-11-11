@@ -1,4 +1,5 @@
 import { savePrescription, getPrescription } from "./services/prescriptionServices.js";
+import * as SessionManager from "../infrastructure/adapters/storage/sessionManager.js"
 
 document.addEventListener('DOMContentLoaded', async () => {
   const savePrescriptionBtn = document.getElementById("savePrescription");
@@ -72,7 +73,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (success) {
       alert("✅ Prescription saved successfully.");
-      selectRole('doctor');
+      SessionManager.selectRole('doctor');
     } else {
       alert("❌ Failed to save prescription. " + message);
     }

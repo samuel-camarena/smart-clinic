@@ -1,0 +1,23 @@
+@import '../../../common-contents/ui/components/advance/cards/card-headers/entity-card-headers/entityCardHeader.css';
+@import '../../../common-contents/ui/components/advance/cards/card-bodies/entity-card-bodies/entityCardBody.css';
+@import '../../../common-contents/ui/components/advance/cards/card-footers/entity-card-footers/entityCardFooter.css';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sp-24, 24px);
+  padding: var(--spacing-sp-24, 24px);
+  flex-shrink: 0;
+  width: 380px;
+  /* height: 500px; */
+
+  border-radius: var(--border-radius-24, 24px);
+  background: var(--colors-white, #FFF);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}

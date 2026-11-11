@@ -61,6 +61,17 @@ public class DoctorService {
         return docs;
     }
     
+    public Doctor getDoctorById(long id) {
+        Doctor doc = doctorRepo.findById(id).orElse(null);
+        if (doc == null) {
+            logger.warn("Doctor not found via get doctor by ID: {}", id);
+            return null;
+        }
+        
+        logger.info("Doctor found via get doctor by ID: {}", id);
+        return doc;
+    }
+    
     /**
      * Finds doctors based on partial name matching and returns the list of doctors with their available times.
      * @param name name

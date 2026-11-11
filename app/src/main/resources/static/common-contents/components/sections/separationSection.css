@@ -1,0 +1,18 @@
+
+.separation-section {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-block: var(--spacing-sp-32, 32px);
+    background: var(--colors-white);
+}
+
+.section-separator {
+    /* width: 1320px; */
+    width: 100%;
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #ffffff, #000000 50%, #ffffff);
+    /* color: var(--colors-grey-100, #E5E5E5); */
+}
+

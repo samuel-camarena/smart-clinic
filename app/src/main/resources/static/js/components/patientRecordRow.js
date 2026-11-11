@@ -10,7 +10,7 @@ export function createPatientRecordRow(patient) {
 
   // Attach event listeners
   tr.querySelector(".prescription-btn").addEventListener("click", () => {
-    window.location.href = `/pages/addPrescription.html?mode=view&appointmentId=${patient.id}`;
+    window.location.href = `../../pages/prescription-contents/addPrescription.html`;
   });
 
   return tr;

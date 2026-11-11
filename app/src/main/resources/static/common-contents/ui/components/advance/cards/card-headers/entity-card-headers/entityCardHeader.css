@@ -1,0 +1,141 @@
+@import '../../../../middle/menus/kebab-menus/kebabMenuCardHeader.css';
+
+.card > header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sp-24, 24px);
+  align-self: stretch;
+
+  & .avatar-portrait {
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    overflow: hidden;
+
+    & .avatar-photo {
+      width: 100px;
+      height: 100px;
+
+      border-radius: 50px;
+      background-color: lightgray;
+    }
+  }
+
+  & .info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sp-4, 4px);
+    width: 208px;
+
+    & .inline-resource-id-container {
+      display: flex;
+      padding: var(--spacing-sp-0, 0);
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+
+      & .resource-name {
+        color: var(--colors-blue-600, #007D99);
+        font-family: var(--font-family-nunito-sans), sans-serif;
+        font-size: var(--font-size-p, 16px);
+        font-style: normal;
+        font-weight: var(--font-weight-bold, 700);
+        line-height: normal;
+      }
+      /*
+      & .kebab-menu-container {
+        display: flex;
+        width: 24px;
+        height: 24px;
+        padding: 4px 10px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        aspect-ratio: 1/1;
+
+        & .kebab-menu-icon {
+          width: 4px;
+          height: 16px;
+          flex-shrink: 0;
+          aspect-ratio: 1/4;
+
+          fill: var(--colors-grey-250, #BFBFBF);
+          background-repeat: no-repeat;
+
+          &:hover {
+            fill: red;
+          }
+        }
+      }
+
+       */
+    }
+
+    & .inline-info-container {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      gap: var(--spacing-sp-12, 12px);
+      position: relative;
+
+      & .icon {
+        width: 18px;
+        height: 18px;
+        left: 0;
+        flex-shrink: 0;
+        aspect-ratio: 1/1;
+
+        fill: var(--colors-blue-600, #007D99);
+      }
+
+      & .text {
+        color: var(--colors-blue-600, #007D99);
+        font-family: var(--font-family-nunito-sans), sans-serif;
+        font-size: var(--font-size-p-2, 14px);
+        font-style: normal;
+        font-weight: var(--font-weight-regular, 400);
+        line-height: normal;
+      }
+
+      &:hover > .tooltip {
+        display: inline-flex;
+      }
+
+      & .tooltip {
+        position: absolute;
+        display: none;
+        padding: var(--spacing-sp-4, 4px) var(--spacing-sp-8, 8px);
+        gap: var(--spacing-sp-12, 12px);
+        align-items: center;
+        /* align-content: space-between; */
+        border-radius: var(--border-radius-16, 16px);
+        background: var(--colors-grey-750, #404040);
+
+        & .text {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          color: var(--colors-white, #FFF);
+          font-family: var(--font-family-nunito-sans, "Nunito Sans"), sans-serif;
+          font-size: var(--font-size-h5, 12px);
+          /* font-style: normal; */
+          font-weight: var(--font-weight-semibold, 600);
+          /* line-height: normal; */
+        }
+
+        & .icon {
+          /* display: flex; */
+          width: 20px;
+          height: 20px;
+          padding: 2px 3px 2px 3px;
+          align-items: flex-start;
+          gap: 8px;
+          aspect-ratio: 1/1;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

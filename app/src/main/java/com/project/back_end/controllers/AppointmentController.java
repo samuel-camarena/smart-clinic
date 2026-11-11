@@ -83,6 +83,27 @@ public class AppointmentController {
     }
     
     /**
+     * Handles HTTP GET requests to fetch all appointments based on doctor credentials.<p>
+     * * Takes the JWT token as path variable.<br>
+     * * Validates the token for role `"doctor"` using the `MainService`.</p>
+     * @param token of type JWT for role `"doctor"`
+     * @return Return all appointments for all patients of the authenticated doctor, if token is valid.
+     * Otherwise, throws InvalidJwtTokenException
+     */
+    @GetMapping("/all/{token}")
+    public ResponseEntity<Map<String, List<AppointmentDTO>>> getAllAppointments(
+        @PathVariable @Valid String token) {
+        
+        mainService.validateToken(token, "admin");
+        //long doctorId = mainService.extractSubjectIdFromToken(token, "doctor");
+        
+        List<AppointmentDTO> appointsDTO = dtoMapper
+            .mapAppointmentsToDTOs(appointmentService
+                .getAllAppointments());
+        return composeResponse(HttpStatus.OK, "appointments", appointsDTO);
+    }
+    
+    /**
      * Handles HTTP GET requests to fetch appointments based on date and patient name.<p>
      * * Takes the appointment date, patient name, and token as path variables.<br>
      * * First validates the token for role `"doctor"` using the `MainService`.</p>

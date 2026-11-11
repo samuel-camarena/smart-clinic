@@ -1,37 +1,54 @@
-<!--
-# index.html
-This file allows users to select a role (Admin, Patient, Doctor) and triggers modal-based login functionality.
- -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Select Role</title>
-        <link rel="icon" href="./assets/images/logo/logo.png" />
-        <link rel="stylesheet" href="./assets/css/style.css" />
-        <link rel="stylesheet" href="./assets/css/index.css" />
-        <script src="./js/util.js" defer></script>
-        <script src="./js/render.js" defer></script>
-        <script src="./js/components/header.js" defer></script>
-        <script src="./js/components/footer.js" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="assets/images/logo/logo.svg" />
+        <title>Welcome to Smart Clinic</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+SC">
+        <link rel="stylesheet" href="common-contents/components/style.css" />
+        <link rel="stylesheet" href="common-contents/components/page-structures/headers/header.css">
+        <link rel="stylesheet" href="common-contents/components/page-structures/headers/authenticated-headers/authenticated-header.css">
+        <link rel="stylesheet" href="common-contents/components/page-structures/footers/footer.css">
+        <!-- <link rel="stylesheet" href="common-contents/components/modals/commonModalUtils.css"> -->
+        <link rel="stylesheet" href="auth-contents/components/modals/loginModal.css">
+        <link rel="stylesheet" href="index-contents/pages/index.css" />
+        <!-- <link rel="stylesheet" href="index-contents/pages/about/sections/landingBannerSection.css" /> -->
+        <!-- <link rel="stylesheet" href="index-contents/pages/about/sections/clinicOverviewSection.css" /> -->
+        <link rel="stylesheet" href="common-contents/components/sections/separationSection.css" />
     </head>
     <body>
         <div class="container">
             <div class="wrapper">
-                    <div id="headerDiv"></div>
-                    <main class="main-content">
-                        <h2>Select Your Role</h2>
-                        <button id="adminButton" onclick="setRole('admin')">Admin</button>
-                        <button id="patientButton" onclick="setRole('patient')">Patient</button>
-                        <button id="doctorButton" onclick="setRole('doctor')">Doctor</button>
-                    </main>
-                    <div id="footerDiv"></div>
+                <header id="header" class="header"></header>
+                <main id="main" class="main-content">
+                    <!--
+                    <div class="section-search-pro container">
+                        <div class="search-content">
+                            <h1 class="title">The best professionals</h1>
+                            <div class="search-bar-container">
+                                <input id="indexSearchBar" class="search-bar" type="text" placeholder="Choose yours">
+                                <img class="loupe-img" src="assets/images/common/search.svg" alt="">
+                            </div>
+                        </div>
+                        <img class="background-img" src="assets/images/index/Rectangle%2067.png" alt="">
+                    </div>
+                    -->
+                </main>
+                <footer id="footer" class="footer"></footer>
+            </div>
+            <!--
+            <div id="indexModal" class="modal" role="dialog">
+                <div id="modalContent" class="modal-content">
+                    <span id="closeModalBtn" class="close" >&times;</span>
+                    <header id="modalHeader" class="modal-header"></header>
+                    <div id="modalBody" class="modal-body"></div>
+                    <footer id="modalFooter" class="modal-footer"></footer>
                 </div>
             </div>
-        <div id="modalDialogContainerDiv" class="modal">
-            <div id="modalDialogBodyDiv"></div>
-            <button id="closeModalDialogButton">Close</button>
+            -->
         </div>
-        <script type="module" src="./js/services/index.js" defer></script>
+        <script type="module" src="index-contents/index.js" defer></script>
     </body>
 </html>

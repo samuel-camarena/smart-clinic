@@ -1,0 +1,91 @@
+
+.card > .body {
+  display: var(--card-body-toggle-display, flex);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sp-16, 16px);
+  width: 302px;
+
+  & .body-header {
+
+    & > .title {
+      color: var(--colors-blue-800, #003E4C);
+      font-family: var(--font-family-nunito-sans), sans-serif;
+      font-size: var(--font-size-p, 16px);
+      font-style: normal;
+      font-weight: var(--font-weight-bold, 700);
+      line-height: normal;
+    }
+  }
+
+  & section,
+  & section.normal-info-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: stretch;
+    gap: var(--spacing-sp-12, 12px);
+
+    & .title {
+      margin-bottom: -6px;
+
+      color: var(--colors-grey-500, #7F7F7F);
+      font-family: var(--font-family-nunito-sans), sans-serif;
+      font-size: var(--font-size-p, 16px);
+      font-style: normal;
+      font-weight: var(--font-weight-medium, 500);
+      line-height: normal;
+    }
+
+    & .inline-info-container {
+      display: flex;
+      position: relative;
+
+      & .icon {
+        left: 0;
+        position: relative;
+        width: 18px;
+        height: 20px;
+        flex-shrink: 0;
+        aspect-ratio: 9/10;
+
+        fill: var(--colors-grey-500, #7F7F7F);
+      }
+
+      & .text {
+        position: relative;
+        left: 8px;
+
+        color: var(--colors-grey-500, #7F7F7F);
+        font-family: var(--font-family-nunito-sans), sans-serif;
+        font-size: var(--font-size-b, 16px);
+        font-style: normal;
+        font-weight: var(--font-weight-regular, 400);
+        line-height: normal;
+      }
+
+      & :nth-child(3) {
+        position: absolute;
+        left: 174px;
+        margin-left: 10px;
+
+        text-wrap: nowrap;
+      }
+    }
+
+    &.highlighted-info-section {
+
+      & .title {
+        color: var(--colors-blue-800, #003E4C);
+      }
+
+      & .icon {
+        fill: var(--colors-blue-800, #003E4C);
+      }
+
+      & .text {
+        color: var(--colors-blue-800, #003E4C);
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+@import 'catalog-sections/entitiesCatalogSection.css';
+
+.dashboard-contents-section {
+  display: flex;
+  background: inherit;
+}

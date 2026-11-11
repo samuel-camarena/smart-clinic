@@ -105,6 +105,16 @@ public class AppointmentService {
         return appoints;
     }
     
+    @Transactional
+    public List<Appointment> getAllAppointments() {
+        List<Appointment> appoints = appointmentRepo.findAll();
+        if (appoints.isEmpty())
+            throw new ResourceNotFoundException("Appointments not found by get all");
+        
+        return appoints;
+    }
+    
+    
     /**
      * This method is used to update an existing appointment based on its ID.<p>
      * * It validates whether the patient ID matches, checks if the appointment is available for updating,

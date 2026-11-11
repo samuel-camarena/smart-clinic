@@ -1,0 +1,40 @@
+
+.card > footer {
+  display: flex;
+  width: 100%;
+
+  & .metrics-section {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+
+    & .metric-container {
+      display: flex;
+      width: 60px;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sp-8, 8px);
+
+      & p,
+      & p.description {
+        color: var(--colors-grey-500, #7F7F7F);
+        text-align: center;
+        font-family: var(--font-family-nunito-sans), "sans-serif";
+        font-size: var(--font-size-h5, 12px);
+        font-style: normal;
+        font-weight: var(--font-weight-bold, 700);
+        line-height: normal;
+      }
+
+      & p.textual-value {
+        color: var(--colors-blue-800, #003E4C);
+        font-size: var(--font-size-h2, 28px);
+      }
+
+      & .iconic-value {
+        width: 55px;
+        height: 37px;
+      }
+    }
+  }
+}

@@ -1,24 +1,19 @@
-<!-- addPrescription.html -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/svg+xml" href="../assets/images/logo/logo.png" />
-    <title>DoctorDashboard</title>
-    <link rel="stylesheet" href="../assets/css/adminDashboard.css">
-    <link rel="stylesheet" href="../assets/css/doctorDashboard.css">
-    <link rel="stylesheet" href="../assets/css/addPrescription.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../js/render.js" defer></script>
-    <script src="../js/util.js" defer></script>
-    <script src="../js/components/header.js" defer></script>
-    <script src="../js/components/footer.js" defer></script>
-    <script type="module" src = "../js/addPrescription.js"></script>
-
+    <title>Doctor Dashboard</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/images/logo/logo.png" />
+    <link rel="stylesheet" href="../../common-contents/components/style.css">
+    <link rel="stylesheet" href="../../common-contents/components/page-structures/header.css">
+    <link rel="stylesheet" href="../../common-contents/components/page-structures/footer.css">
+    <!-- <link rel="stylesheet" th:href="@{/assets/css/components/modals/shared-modals/commonModalUtils.css}"> -->
+    <link rel="stylesheet" href="../../assets/css/dashboards/doctorDashboard.css">
+    <link rel="stylesheet" href="../../assets/css/prescription-contents/addPrescription.css">
+    <script src="../../index-contents/components/components/header.js" defer></script>
+    <script src="../../js/components/footer.js" defer></script>
 </head>
-
-<body onload="renderContent()">
+<body>
     <div class="container">
         <div class="wrapper">
             <div id="header"></div>
@@ -48,5 +43,6 @@
             <div id="footer"></div>
         </div>
     </div>
+    <script type="module" src = "../../js/prescription-contents/addPrescription.js" defer></script>
 </body>
 </html>

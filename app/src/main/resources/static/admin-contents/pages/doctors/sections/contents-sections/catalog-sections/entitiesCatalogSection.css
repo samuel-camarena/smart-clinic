@@ -1,0 +1,11 @@
+@import '../../../../../components/cards/entityCard.css';
+
+.entities-catalog-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--spacing-sp-24, 24px);
+  justify-items: center;
+
+  /* background: var(--colors-grey-15, #FAFAFA); */
+  background: inherit;
+}

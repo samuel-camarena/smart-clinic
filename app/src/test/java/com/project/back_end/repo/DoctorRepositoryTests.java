@@ -104,7 +104,7 @@ public class DoctorRepositoryTests {
      * ## 1.1. Registration Successful Use cases.
      */
     @Test
-    void givenValidArguments_whenRegister_thenNewDoctorIsRegisteredWithThatArguments() throws Exception {
+    void givenValidArguments_whenSave_thenNewDoctorIsRegisteredWithThatArguments() throws Exception {
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         
         assertThat(actualDoc.getName()).isEqualTo(expectedDoc.getName());
@@ -141,7 +141,7 @@ public class DoctorRepositoryTests {
      */
     @ParameterizedTest
     @ValueSource(ints = { NAME_SIZE_MIN, NAME_SIZE_MAX })
-    void givenNameIsAtTheEdgeOfSizeConstraint_whenRegister_thenRegisteredDoctorIsReturn(int validSize) throws Exception {
+    void givenNameIsAtTheEdgeOfSizeConstraint_whenSave_thenRegisteredDoctorIsReturn(int validSize) throws Exception {
         expectedDoc.setName(" ".repeat(validSize - 1) + "a");
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getName()).isEqualTo(expectedDoc.getName());
@@ -149,7 +149,7 @@ public class DoctorRepositoryTests {
 
     @ParameterizedTest
     @ValueSource(ints = { SPECIALTY_SIZE_MIN, SPECIALTY_SIZE_MAX })
-    void givenSpecialtyIsAtTheEdgeOfSizeConstrain_whenRegister_thenSuccessAndNewDoctorIdIsReturn(int validSize) throws Exception {
+    void givenSpecialtyIsAtTheEdgeOfSizeConstrain_whenSave_thenSuccessAndNewDoctorIdIsReturn(int validSize) throws Exception {
         expectedDoc.setSpecialty(" ".repeat(validSize - 1) + "a");
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getSpecialty()).isEqualTo(expectedDoc.getSpecialty());
@@ -160,7 +160,7 @@ public class DoctorRepositoryTests {
         "a.a@b.cc", "A.a@b.cc", "0.a@b.cc", "_.a@b.cc", "+.a@b.cc", "-.a@b.cc", "*.a@b.cc", "&.a@b.cc",
         "a.A@b.cc", "a.0@b.cc", "a._@b.cc", "a.+@bb.cc", "a.-@b.cc", "a.*@b.cc", "a.&@b.cc", "a@B.cc", "a@0.cc",
         "a@b.Cc", "a@b.cC", "a@b.CC" })
-    void givenEmailIsAtTheEdgeOfEmailConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
+    void givenEmailIsAtTheEdgeOfEmailConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
         expectedDoc.setEmail(validSyntax);
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getEmail()).isEqualTo(expectedDoc.getEmail());
@@ -169,7 +169,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @ValueSource(strings = { "0aA   ", "0aA_*&", "0123aA", "0aABCD", "0abcdA", "aA012345678901234567",
         "0aAaaaaaaaaaaaaaaaaa", "0aABCDEFGHIJKLMNÑOPQ", "0aA_.:-*+^`'{(=¿?!@$" })
-    void givenPasswordIsAtTheEdgeOfPatternConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
+    void givenPasswordIsAtTheEdgeOfPatternConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
         expectedDoc.setPassword(validSyntax);
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getPassword()).isEqualTo(expectedDoc.getPassword());
@@ -177,14 +177,14 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(strings = {"0000000000", "0123456789" })
-    void givenPhoneIsAtTheEdgeOfPatternConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
+    void givenPhoneIsAtTheEdgeOfPatternConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(String validSyntax) throws Exception {
         expectedDoc.setPhone(validSyntax);
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getPhone()).isEqualTo(expectedDoc.getPhone());
     }
     
     @Test
-    void givenAvailableTimesIsAtTheEdgeOfNotEmptyConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn() throws Exception {
+    void givenAvailableTimesIsAtTheEdgeOfNotEmptyConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn() throws Exception {
         expectedDoc.setAvailableTimes(List.of("09:00 - 10:00"));
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);;
         assertThat(actualDoc.getAvailableTimes().size()).isEqualTo(1);
@@ -193,7 +193,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { YEARS_OF_EXP_RANGE_MIN, YEARS_OF_EXP_RANGE_MAX })
-    void givenYearsOfExperienceIsAtTheEdgeOfRangeConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(int validRange) throws Exception {
+    void givenYearsOfExperienceIsAtTheEdgeOfRangeConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(int validRange) throws Exception {
         expectedDoc.setYearsOfExperience(validRange);
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getYearsOfExperience()).isEqualTo(expectedDoc.getYearsOfExperience());
@@ -201,7 +201,7 @@ public class DoctorRepositoryTests {
 
     @ParameterizedTest
     @ValueSource(ints = { ADDRESS_SIZE_MIN, ADDRESS_SIZE_MAX })
-    void givenClinicAddressIsAtTheEdgeOfSizeConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(int validSize) throws Exception {
+    void givenClinicAddressIsAtTheEdgeOfSizeConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(int validSize) throws Exception {
         expectedDoc.setClinicAddress("a".repeat(validSize));
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getClinicAddress()).isEqualTo(expectedDoc.getClinicAddress());
@@ -209,7 +209,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { RATING_RANGE_MIN, RATING_RANGE_MAX })
-    void givenRatingIsAtTheEdgeOfRangeConstraint_whenRegister_thenSuccessAndNewDoctorIdIsReturn(int validRange) throws Exception {
+    void givenRatingIsAtTheEdgeOfRangeConstraint_whenSave_thenSuccessAndNewDoctorIdIsReturn(int validRange) throws Exception {
         expectedDoc.setRating(validRange);
         Doctor actualDoc = testEntityManager.persistFlushFind(expectedDoc);
         assertThat(actualDoc.getRating()).isEqualTo(expectedDoc.getRating());
@@ -230,7 +230,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenNameViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankNameException(String invalidInstantiation) throws Exception {
+    void givenNameViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankNameException(String invalidInstantiation) throws Exception {
         expectedDoc.setName(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -242,7 +242,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { NAME_SIZE_MIN - 1, NAME_SIZE_MAX + 1 })
-    void givenNameViolatesSizeConstraint_whenRegister_thenThrowsInvalidSizeNameException(int invalidSize) throws Exception {
+    void givenNameViolatesSizeConstraint_whenSave_thenThrowsInvalidSizeNameException(int invalidSize) throws Exception {
         expectedDoc.setName("a".repeat(invalidSize));
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -256,7 +256,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenSpecialtyViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankSpecialtyException(String invalidInstantiation) throws Exception {
+    void givenSpecialtyViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankSpecialtyException(String invalidInstantiation) throws Exception {
         expectedDoc.setSpecialty(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -269,7 +269,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { SPECIALTY_SIZE_MIN - 1, SPECIALTY_SIZE_MAX + 1 })
-    void givenSpecialtyViolatesSizeConstraint_whenRegister_thenThrowsInvalidSizeSpecialtyException(int invalidSize) throws Exception {
+    void givenSpecialtyViolatesSizeConstraint_whenSave_thenThrowsInvalidSizeSpecialtyException(int invalidSize) throws Exception {
         expectedDoc.setSpecialty("a".repeat(invalidSize));
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -283,7 +283,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenEmailViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankEmailException(String invalidInstantiation) throws Exception {
+    void givenEmailViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankEmailException(String invalidInstantiation) throws Exception {
         expectedDoc.setEmail(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -295,18 +295,18 @@ public class DoctorRepositoryTests {
     }
     
     @Test
-    void givenAnEmailExists_whenRegister_thenThrowsNonUniqueEmailException() throws Exception {
+    void givenAnEmailExists_whenSave_thenThrowsNonUniqueEmailException() throws Exception {
         String alreadyExistsEmail = doctorRepo.findById(1L).orElseThrow().getEmail();
         expectedDoc.setEmail(alreadyExistsEmail);
         DataIntegrityViolationException dive =
             assertThrowsExactly(
                 DataIntegrityViolationException.class,
-                () -> doctorRepo.register(expectedDoc));
+                () -> doctorRepo.save(expectedDoc));
     }
     
     @ParameterizedTest
     @ValueSource(strings = {"doctor#gmail.com", "doctor@", "@gmail.com", "doctor@gmailcom"})
-    void givenEmailViolatesPatternConstraint_whenRegister_thenThrowsInvalidPatternEmailException(String invalidSyntax) throws Exception {
+    void givenEmailViolatesPatternConstraint_whenSave_thenThrowsInvalidPatternEmailException(String invalidSyntax) throws Exception {
         expectedDoc.setEmail(invalidSyntax);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -320,7 +320,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenPasswordViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankPasswordException(String invalidInstantiation) throws Exception {
+    void givenPasswordViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankPasswordException(String invalidInstantiation) throws Exception {
         expectedDoc.setPassword(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -333,7 +333,7 @@ public class DoctorRepositoryTests {
 
     @ParameterizedTest
     @ValueSource(strings = { "abcdef", "ABCDEF", "02345", "abc012", "012abc", "ABC012", "012ABC", "aB012", "aB0__0123456789012345" })
-    void givenPasswordViolatesPatternConstraint_whenRegister_thenThrowsInvalidPatternPasswordException(String invalidSyntax) throws Exception {
+    void givenPasswordViolatesPatternConstraint_whenSave_thenThrowsInvalidPatternPasswordException(String invalidSyntax) throws Exception {
         expectedDoc.setPassword(invalidSyntax);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -347,7 +347,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenPhoneViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankPhoneException(String invalidInstantiation) throws Exception {
+    void givenPhoneViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankPhoneException(String invalidInstantiation) throws Exception {
         expectedDoc.setPhone(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -360,7 +360,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(strings = {"a012345678", "abcdefghi1", "012345678", "01234567890"})
-    void givenPhoneViolatesPatternConstraint_whenRegister_thenThrowsInvalidPatternPhoneException(String invalidSyntax) throws Exception {
+    void givenPhoneViolatesPatternConstraint_whenSave_thenThrowsInvalidPatternPhoneException(String invalidSyntax) throws Exception {
         expectedDoc.setPhone(invalidSyntax);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -373,7 +373,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @NullAndEmptySource
-    void givenAvailableTimesViolatesNotEmptyConstraint_whenRegister_thenThrowsNotEmptyAvailableTimesException(List<String> invalidInstantiation) throws Exception {
+    void givenAvailableTimesViolatesNotEmptyConstraint_whenSave_thenThrowsNotEmptyAvailableTimesException(List<String> invalidInstantiation) throws Exception {
         expectedDoc.setAvailableTimes(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -386,7 +386,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { YEARS_OF_EXP_RANGE_MIN - 1, YEARS_OF_EXP_RANGE_MAX + 1})
-    void givenYearsOfExpViolatesRangeConstraint_whenRegister_thenThrowsInvalidRangeYearsOfExperienceException(int invalidRange) throws Exception {
+    void givenYearsOfExpViolatesRangeConstraint_whenSave_thenThrowsInvalidRangeYearsOfExperienceException(int invalidRange) throws Exception {
         expectedDoc.setYearsOfExperience(invalidRange);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -400,7 +400,7 @@ public class DoctorRepositoryTests {
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {" \t\n\r\f"})
-    void givenClinicAddressViolatesNotBlankConstraint_whenRegister_thenThrowsNotBlankClinicAddressException(String invalidInstantiation) throws Exception {
+    void givenClinicAddressViolatesNotBlankConstraint_whenSave_thenThrowsNotBlankClinicAddressException(String invalidInstantiation) throws Exception {
         expectedDoc.setClinicAddress(invalidInstantiation);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -413,7 +413,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(ints = { ADDRESS_SIZE_MIN - 1, ADDRESS_SIZE_MAX + 1})
-    void givenClinicAddressViolatesSizeConstraint_whenRegister_thenThrowsInvalidSizeClinicAddressException(int invalidSize) throws Exception {
+    void givenClinicAddressViolatesSizeConstraint_whenSave_thenThrowsInvalidSizeClinicAddressException(int invalidSize) throws Exception {
         expectedDoc.setClinicAddress("1".repeat(invalidSize));
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -425,7 +425,7 @@ public class DoctorRepositoryTests {
     
     @ParameterizedTest
     @ValueSource(doubles = { RATING_RANGE_MIN - 0.1, RATING_RANGE_MAX + 0.1})
-    void givenRatingViolatesRangeConstraint_whenRegister_thenThrowsInvalidRangeRatingException(double invalidRange) throws Exception {
+    void givenRatingViolatesRangeConstraint_whenSave_thenThrowsInvalidRangeRatingException(double invalidRange) throws Exception {
         expectedDoc.setRating(invalidRange);
         ConstraintViolationException constraintViolEx =
             assertThrowsExactly(
@@ -437,7 +437,7 @@ public class DoctorRepositoryTests {
     }
     
     @Test
-    void givenManyArgumentsViolatesConstraints_whenRegister_thenThrowsThatManyFieldsConstraintsExceptions() throws Exception {
+    void givenManyArgumentsViolatesConstraints_whenSave_thenThrowsThatManyFieldsConstraintsExceptions() throws Exception {
         expectedDoc.setName("a");
         expectedDoc.setSpecialty("a");
         expectedDoc.setEmail("a#a");

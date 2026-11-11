@@ -1,0 +1,407 @@
+/* @import url('https://googleapis.com'); */
+/* Variables CSS */
+:root {
+  /* Colors */
+  --colors-blue-800: #003E4C;
+  --colors-blue-600: #007D99;
+  --colors-blue-400: #00BBE5;
+  --colors-blue-200: #99ECFF;
+  --colors-blue-100: #E5FAFF;
+
+  --colors-red-800: #660002;
+  --colors-red-600: #CC0003;
+  --colors-red-400: #FF6669;
+  --colors-red-200: #FFCCCD;
+  --colors-red-100: #FFE5E6;
+
+  --colors-gold-800: #7F6600;
+  --colors-gold-600: #E8B900;
+  --colors-gold-400: #FFD633;
+  --colors-gold-200: #FFEB99;
+  --colors-gold-100: #FFF5CC;
+
+  --colors-black: #000000;
+  --colors-grey-750: #404040;
+  --colors-grey-500: #7F7F7F;
+  --colors-grey-250: #BFBFBF;
+  --colors-grey-100: #E5E5E5;
+  --colors-grey-25: #F7F7F7;
+  --colors-grey-15: #FAFAFA;
+  --colors-white: #FFFFFF;
+
+  /* --sds-color-border-default-default: Gray / 300 */
+  --sds-color-border-default-default: #D9D9D9;
+  --sds-color-text-default-default: #1E1E1E; /* Gray 900 */
+
+  /* Font Family, Typography */
+  --font-family-nunito-sans: 'Nunito Sans', sans-serif;
+  --font-family-alegreya-sc: 'Alegreya SC', serif;
+  --sds-typography-body-font-family: 'inter', sans;
+
+  /* Font Size */
+  --font-size-h1: 44px;
+  --font-size-h2: 28px;
+  --font-size-h3: 24px;
+  --font-size-h4: 20px;
+  --font-size-p: 16px;
+  --font-size-b: 16px;
+  --font-size-p-2: 14px;
+  --font-size-h5: 12px;
+  --font-size-h6: 10px;
+  --font-size-large: 64px;
+
+  --font-size-logo-text-header: 32px;
+  --font-size-logo-text-footer: 20px;
+
+  --sds-typography-body-size-medium: 16px;
+  --sds-typography-subtitle-size-base: 32px;
+
+  /* Font weight */
+  --font-weight-black: 800;
+  --font-weight-bold: 700;
+  --font-weight-semibold: 600;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-light: 300;
+
+  /* Spacing */
+  --spacing-sp-0: 0px;
+  --spacing-sp-4: 4px;
+  --spacing-sp-8: 8px;
+  --spacing-sp-12: 12px;
+  --spacing-sp-16: 16px;
+  --spacing-sp-20: 20px;
+  --spacing-sp-24: 24px;
+  --spacing-sp-32: 32px;
+  --spacing-sp-40: 40px;
+  --spacing-sp-44: 44px;
+  --spacing-sp-48: 48px;
+  --spacing-sp-56: 56px;
+  --spacing-sp-64: 64px;
+  --spacing-sp-72: 72px;
+  --spacing-sp-96: 96px;
+  --spacing-sp-100: 100px;
+  --spacing-sp-150: 150px;
+  --spacing-sp-164: 164px;
+  --spacing-sp-200: 200px;
+
+  /* Simple Design System, Space Size */
+  --sds-size-space-200: 8px;
+  --sds-size-space-300: 12px;
+  --sds-size-space-800: 32px;
+  --sds-size-space-600: 24px;
+  --sds-size-space-1200: 48px;
+  --sds-size-space-1600: 64px;
+
+  --sds-size-radius-200: 8px;
+
+  /* Border Radius */
+  --border-radius-0: 0px;
+  --border-radius-4: 4px;
+  --border-radius-8: 8px;
+  --border-radius-12: 12px;
+  --border-radius-16: 16px;
+  --border-radius-20: 20px;
+  --border-radius-22: 22px;
+  --border-radius-24: 24px;
+  --border-radius-36: 36px;
+  --border-radius-48: 48px;
+
+  /* Borde Width */
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+  --border-width-3: 3px;
+
+  --sds-size-stroke-border: 1px;
+
+  /*
+   Layout Settings
+   */
+  /* Components Layout Sizes */
+  --header-min-height: 85px;
+  --footer-min-height: 320px;
+  --sidebar-min-width: 220px;
+
+  /* Grid Layouts */
+  --grid-template-areas-dashboar: "header header header" "sidebar main main" "footer footer footer";
+}
+
+/* this is the style sheet file for index.html  */
+/*
+    # Global Reset (`*`)
+    - Purpose: Ensure consistent layout across all browsers.
+    - Properties:
+        - `margin: 0` — removes default outer spacing from all elements.
+        - `padding: 0` — removes default inner spacing.
+        - `box-sizing: border-box` — ensures padding and borders are included within the total width/height of elements.
+*/
+
+/*
+    # Base HTML & Body (`html, body`)
+    - Purpose: Establish a full-height layout and apply a standard font across the page.
+    - Properties:
+        - `height: 100%` — allows containers to stretch to the full viewport height.
+        - `font-family: Roboto, sans-serif` — applies a clean, readable sans-serif font.
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* TODO: por qué utilizar height: 100%. */
+html, body {
+  height: 100%;
+}
+
+h1 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h1, 44px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+h2 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h2, 28px);
+  font-style: normal;
+  font-weight: var(--font-weight-light, 300);
+  line-height: normal;
+}
+
+h3 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h3, 24px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+h4 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h4, 20px);
+  font-style: normal;
+  font-weight: var(--font-weight-light, 300);
+  line-height: normal;
+}
+
+h5 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h5, 12px);
+  font-style: normal;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: normal;
+}
+
+h6 {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-h6, 10px);
+  font-style: normal;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: normal;
+}
+
+p {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-p, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: normal;
+}
+
+b {
+  color: var(--colors-blue-800, #003E4C);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-b, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+a {
+  /* color: var(--colors-grey-500, #7F7F7F); */
+  color: var(--colors-blue-800, #003E4C);
+  text-decoration: none;
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-b, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-medium, 500);
+  line-height: normal;
+}
+
+label {
+  color: var(--colors-blue-800, #003E4C);
+  font-size: var(--font-size-p, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+/* De momento está en el dropdown de Specialties en New Doctor Modal, buscar otros usos */
+.select-dropdown option {
+  font-size: 16px;
+  padding: 10px;
+}
+
+#content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(315px, 1fr));
+  gap: 40px;
+  padding: 20px;
+}
+
+/*
+    # Main Layout Wrapper (`.wrapper`)
+    - Purpose: Create a flexible, vertical layout that fills the entire screen.
+    - Properties:
+        - `display: flex` — enables flexbox for layout control.
+        - `flex-direction: column` — stacks children vertically.
+        - `min-height: 100vh` — ensures the wrapper always covers full screen height.
+*/
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+button {
+  display: inline-flex;
+  padding: var(--spacing-sp-8, 8px) var(--spacing-sp-16, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 44px; /* revisar altura sin especificar es 42px en Figma son 44px */
+
+  border-radius: var(--border-radius-24, 24px);
+  background: var(--colors-blue-600, #007D99);
+  color: var(--colors-white, #FFF);
+  font-family: var(--font-family-nunito-sans), sans-serif;
+  font-size: var(--font-size-b, 16px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: normal;
+}
+
+button:hover {
+  background: var(--colors-blue-800, #003E4C);
+  cursor: pointer;
+}
+
+.alternative-btn {
+  border: 1px solid var(--colors-blue-800, #003E4C);
+  background: var(--colors-white, #FFF);
+  color: var(--colors-blue-800, #003E4C);
+}
+
+.alternative-btn:hover {
+  background: var(--colors-blue-100, #E5FAFF);
+}
+
+.disabled-btn {
+  background: var(--colors-grey-100, #E5E5E5);
+}
+
+/* TODO: Eliminar tras Atomización (Reactificación) */
+input {
+  display: flex;
+  width: 283px;
+  padding: var(--spacing-sp-12, 12px) var(--spacing-sp-16, 16px);
+  align-items: center;
+  gap: 10px;
+
+  border-radius: var(--border-radius-24, 24px);
+  border: var(--border-width-1, 1px) solid var(--colors-blue-800, #003E4C);
+  background: var(--colors-white, #FFF);
+}
+
+select {
+  display: flex;
+  width: 185px;
+  height: 44px;
+  padding: var(--spacing-sp-12, 12px) var(--spacing-sp-16, 16px);
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: var(--border-radius-24, 24px);
+  border: var(--border-width-1, 1px) solid var(--colors-blue-800, #003E4C);
+  background: var(--colors-white, #FFF);
+}
+
+.text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+/*
+.search-Bar{
+    height: 30px;
+    padding:20px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    border: 0.2px solid grey;
+}
+
+.search-Bar:focus{
+    outline: none;
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+}
+
+.filter-wrapper {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.filter-select {
+    margin-right: 8px;
+    width: auto;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    background-position: right 10px center;
+    background-size: 16px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+*/
+/*
+.filter-select:focus {
+    border-color: #015c5d;
+    box-shadow: 0 0 5px rgba(1, 92, 93, 0.697);
+    outline: none;
+}
+ */

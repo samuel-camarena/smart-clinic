@@ -1,0 +1,7 @@
+#closeModalButton {
+  height: 36px;
+  width: 36px;
+  top: 4px;
+  right: 4px;
+}
+revisar opciones para que mejore el aspecto visual.

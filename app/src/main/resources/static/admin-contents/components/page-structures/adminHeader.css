@@ -1,0 +1,240 @@
+.header {
+    display: flex;
+    padding: var(--spacing-sp-8, 8px) var(--sds-size-space-800);
+    align-items: center;
+    align-content: center;
+    gap: 0 var(--sds-size-space-600);
+    align-self: stretch;
+    flex-wrap: wrap;
+
+    border-bottom: var(--border-width-1) solid var(--colors-grey-250);
+    background: var(--colors-white);
+}
+
+.logo-section {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo-link{
+    display: flex;
+    align-items: center;
+    /* vertical-align: center; */
+    gap: 10px;
+}
+
+.logo-img {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    padding: 7px 5px 6px 5px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    aspect-ratio: 1/1;
+}
+
+.logo-img .img-heart {
+    width: 47px;
+    height: 43px;
+    flex-shrink: 0;
+    aspect-ratio: 47/43;
+    fill: var(--colors-blue-400, #00BBE5);
+}
+
+/* Logo text / slogan */
+.header .logo-title {
+    display: flex;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    color: var(--colors-black, #000);
+    font-family: var(--font-family-alegreya-sc), serif;
+    /* font-size: var(--font-size-logo-title), 32px; */
+    font-size: 32px;
+    font-weight: var(--font-weight-bold);
+    font-style: normal;
+    line-height: normal;
+}
+
+.services-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 8px var(--sds-size-space-200);
+    flex: 1 0 0;
+    flex-wrap: wrap;
+}
+
+.services-nav-item {
+    display: inline-flex;
+    padding: var(--sds-size-space-200);
+    justify-content: center;
+    align-items: center;
+    gap: var(--sds-size-space-200);
+
+    color: var(--colors-blue-600, #007D99);
+    font-family: var(--sds-typography-body-font-family), sans-serif;
+    font-size: var(--sds-typography-body-size-medium);
+    font-style: normal;
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: 100%;
+    text-decoration: none;
+    border-radius: var(--border-radius-0, 0);
+    border-bottom: var(--spacing-sp-4, 4px) solid transparent; /*  Evita que desplace la visualización, al añadir borde en el evento: hover. */
+}
+
+.services-nav-item:hover {
+    border-bottom: var(--spacing-sp-4, 4px) solid var(--colors-blue-600, #007D99);
+    /* outline-width: 0 0 4px 0;  Evitar que desplace la visualización */
+}
+
+.services-nav-item.selected {
+    color: var(--colors-blue-800, #003E4C);
+    border-bottom: var(--spacing-sp-4, 4px) solid var(--colors-blue-800, #003E4C);
+}
+
+/* TODO: utilizar en vez de selected
+.services-nav-item:visited {
+    color: var(--colors-blue-800, #003E4C);
+    border-radius: var(--border-radius-0, 0);
+    border-bottom: var(--spacing-sp-4, 4px) solid var(--colors-blue-800, #003E4C);
+}
+/*
+.quick-services-btn {
+    display: flex;
+    padding: var(--spacing-sp-8, 8px) var(--spacing-sp-16, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: var(--border-radius-24, 24px);
+    border: 1px solid var(--colors-blue-800, #003E4C);
+    background: var(--colors-white, #FFF);
+}
+*/
+
+/*
+.login-btn {
+    display: flex;
+    padding: var(--spacing-sp-8, 8px) var(--spacing-sp-16, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: var(--border-radius-24, 24px);
+    background: var(--colors-blue-600, #007D99);
+}
+*/
+
+/* Nav links styling */
+/*
+nav a {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #015c5d;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #048788;
+}
+*/
+/* Responsive behavior */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    /*
+    nav {
+        margin-top: 10px;
+    }
+
+    nav a {
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
+    .logo-img {
+        height: 30px;
+    }
+
+    .logo-title {
+        font-size: 18px;
+    }
+    */
+
+}
+/*
+.doctorHeader{
+    margin-right: 30px
+}
+
+.doctorHeader:hover {
+    color: #A62B1F;
+}
+*/
+/*
+header button {
+    width: 110px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 10px;
+    /* margin-top: 20px; */ /*
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; */ /* Dark text for contrast. */ /*
+    background: #f4f4f4; /* Light grey. */ /*
+    cursor: pointer;
+}
+*/
+/*
+    - Changes text color to `#A62B1F` for brand consistency while keeping the background same.
+*/ /*
+header button:hover {
+    color: #333;
+}
+*/
+/*
+Primary Button (`button`)
+Purpose: Design prominent, interactive buttons for main actions.
+*/
+/*
+button {
+    width: 200px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #A62B1F;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.header-btn {
+    width: 110px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 0;
+    color: #333;
+    background: #f4f4f4;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.header-btn:hover {
+    color: #A62B1F;
+    background: #f4f4f4;
+}
+
+*/

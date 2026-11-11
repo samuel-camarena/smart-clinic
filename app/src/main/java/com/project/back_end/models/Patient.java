@@ -21,11 +21,11 @@ public class Patient {
     
     @NotBlank(message = EMAIL_NOT_BLANK_MSG)
     @Column(unique = true, name = "email")
-    @Email(regexp = EMAIL_VALIDATION_REGEX, message = EMAIL_INVALID_REGEX_MSG)
+    @Email(regexp = "${email-validation-regex}", message = EMAIL_INVALID_REGEX_MSG)
     private String email;
     
     @NotBlank(message = PASSWORD_SIMPLE_NOT_BLANK_MSG)
-    @Pattern(regexp = PASSWORD_SIMPLE_VALIDATION_REGEX, message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20}$", message = PASSWORD_SIMPLE_INVALID_PATTERN_MSG)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     
@@ -41,6 +41,9 @@ public class Patient {
     @Past(message = DATE_OF_BIRTH_NOT_PAST_MSG)
     private LocalDate dateOfBirth;
     
+    @NotBlank(message = NOT_BLANK_MSG)
+    private String photoName;
+    
     @NotBlank(message = EMERGENCY_CONTACT_NOT_BLANK_MSG)
     @Pattern(regexp = PHONE_VALIDATION_REGEX, message = PHONE_INVALID_PATTERN_MSG)
     private String emergencyContact;
@@ -52,13 +55,14 @@ public class Patient {
     public Patient() {}
     
     public Patient(String name, String email, String password, String phone, String address,
-                   LocalDate dateOfBirth, String emergencyContact, String insuranceProvider) {
+                   LocalDate dateOfBirth, String photoName, String emergencyContact, String insuranceProvider) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
+        this.photoName = photoName;
         this.emergencyContact = emergencyContact;
         this.insuranceProvider = insuranceProvider;
     }
@@ -70,6 +74,7 @@ public class Patient {
         setPhone(builder.phone);
         setAddress(builder.address);
         setDateOfBirth(builder.dateOfBirth);
+        setPhotoName(builder.photoName);
         setEmergencyContact(builder.emergencyContact);
         setInsuranceProvider(builder.insuranceProvider);
     }
@@ -130,6 +135,14 @@ public class Patient {
         this.dateOfBirth = dateOfBirth;
     }
     
+    public String getPhotoName() {
+        return photoName;
+    }
+    
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+    
     public String getEmergencyContact() {
         return emergencyContact;
     }
@@ -153,6 +166,7 @@ public class Patient {
         private String phone;
         private String address;
         private LocalDate dateOfBirth;
+        private String photoName;
         private String emergencyContact;
         private String insuranceProvider;
         
@@ -183,6 +197,11 @@ public class Patient {
         
         public Builder dateOfBirth(LocalDate dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+        
+        public Builder photoName(String photoName) {
+            this.photoName = photoName;
             return this;
         }
         

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.svg}" />
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/footer.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/modals/shared-modals/modal.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/dashboards/doctorDashboard.css}">
+    <script th:src="@{/js/components/footer.js}" defer></script>
+</head>
+<body onload="RoleManager.renderContent()">
+    <div class="container">
+        <div class="wrapper">
+            <header id="header"></header>
+            <main id="main" class="main-content">
+                <input id="filterByNameSearchBar" class="searchBar" type="text" placeholder="Search by patient's name ...">
+                <div class="filter-wrapper" style=""> <!-- Button TodayDate: Add a click listener to the "Today" button -->
+                    <button id="filterByTodayBtn" class="today-btn">Today's Appointments</button> <!-- Add a change event listener to the date picker -->
+                    <input type="date" id="datePicker" class="date-picker">
+                </div>
+                <table id="appointmentsTable">
+                    <thead class="table-header">
+                        <tr>
+                            <th>Patient ID</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Prescription</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody"></tbody>
+                </table>
+            </main>
+            <footer id="footer"></footer>
+        </div>
+    </div>
+    <script type="module" th:src="@{/js/dashboards/doctorDashboard.js}" defer></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+@import "../../../common-contents/components/modals/commonModalUtils.css";
+
+.form-doctor-btn {
+    width: 200px;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-doctor-primary-btn {
+    background-color: #047857;
+    color: #fff;
+}
+
+.form-doctor-primary-btn:hover {
+    background-color: #065f46;
+}
+
+.form-doctor-secondary-btn {
+    /* background-color: #047857; */
+    /* color: #fff; */
+    background-color: transparent;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.form-doctor-secondary-btn:hover {
+    color: #fff;
+    background-color: #A62B1F;
+}
+
+.form-doctor-div-separator {
+    width: 20px;
+}
+
+.form-doctor-footer {
+    margin-top: 20px;
+    display: flex;
+}
+/*
+ Nuevos de Modal
+ */
+.admin-modal {
+    max-width: 500px !important; /* también en modal-container */
+}
+
+.admin-modal .input-field {
+    margin-bottom: 22px;
+}
+
+.admin-modal .error-field {
+    outline: red solid 1px; /* Utilizar "!important" para asegurar que al estilizar un error, no se sobreescribirá el estilo, por la pseudo-clase :valid */
+}
+
+/* .admin-modal .error-span { */
+.admin-modal .error-label {
+    display: none;
+    margin-top: -22px; /* height: 18px, + 4px = -22px */
+    margin-bottom: 4px;
+    color: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.admin-modal .error-label-show {
+    color: red;
+    display: flex;
+}
+
+.admin-modal .error-label-hide {
+    color: transparent;
+    display: none;
+}
+
+.is-field-valid:invalid {
+    outline: red solid 1px;
+}

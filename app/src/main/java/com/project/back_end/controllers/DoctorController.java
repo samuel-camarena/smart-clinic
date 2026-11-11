@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +63,7 @@ public class DoctorController {
         @RequestBody @Valid Doctor doctor) {
         
         mainService.validateToken(token, "admin");
-        //Doctor doc = dtoMapper.mapDTOtoDoctor(doctorDto);
+        //Doctor doc = dtoMapper.mapDTOtoDoctor(doctorDto); // ¿Quizás sustituir Map de Jakarta por el mío propio?
         doctorService.createDoctor(doctor);
         return composeResponse(HttpStatus.CREATED, "message", "Doctor successfully registered");
     }
@@ -101,6 +102,18 @@ public class DoctorController {
     }
     
     /**
+     * Handles HTTP GET requests to retrieve a list of all doctors.<p>
+     * * Returns the list within a response map under the key `"doctors"` with HTTP 200 OK status.</p>
+     * @return HTTP 200 OK and body with doctor's list
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Map<String, List<Doctor>>> getDoctorById(
+        @PathVariable @Valid long id) {
+        System.out.println(id);
+        return composeResponse(HttpStatus.OK, "doctors", List.of(doctorService.getDoctorById(id)));
+    }
+    
+    /**
      * Handles HTTP GET requests to filter doctors based on name, time, and specialty.<p>
      * * Calls the shared `MainService` to perform filtering logic and returns matching doctors in the response.</p>
      * @param name contained partially in doctor's name.
@@ -109,20 +122,22 @@ public class DoctorController {
      * @return ResponseEntity<Map<String, List<Doctor>>>
      */
     @GetMapping("/filter")
-    public ResponseEntity<Map<String, List<Doctor>>> filterAllDoctorsV2(
+    public ResponseEntity<Map<String, List<Doctor>>> filterAllDoctors(
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String amOrPm,
-        @RequestParam(required = false) String specialty) {
+        @RequestParam(required = false) String specialty,
+        @RequestParam(required = false) String insurance) {
         
         name = sanitizeStringParam(name);
         specialty = sanitizeStringParam(specialty);
         TimePeriodOfDay period = sanitizeStringTimePeriodOfDay(amOrPm);
+        insurance = sanitizeStringParam(insurance);
         
         return composeResponse(HttpStatus.OK, "doctors", filterDoctors(name, specialty, period));
     }
-    
+    /*
     @GetMapping("/filter/{name}/{time}/{specialty}/{token}")
-    public ResponseEntity<Map<String, List<Doctor>>> filterAllDoctors(
+    public ResponseEntity<Map<String, List<Doctor>>> filterAllDoctorsV1(
         @PathVariable String name,
         @PathVariable String time,
         @PathVariable String specialty) {
@@ -133,7 +148,7 @@ public class DoctorController {
         
         return composeResponse(HttpStatus.OK, "doctors", filterDoctors(name, specialty, period));
     }
-    
+    */
     
     /**
      * Handles HTTP PUT requests to update an existing doctor's information.<p>

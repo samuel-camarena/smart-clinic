@@ -1,0 +1,149 @@
+
+table {
+    display: flex;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+
+thead {
+    background: #ddd;
+    color: white;
+}
+
+/* TODO: Por qué un thead y un table-head, quizás combinarlos: thead .table-header { ... */
+.table-header {
+    font-size: 24px;
+    color: #000; /* teal del tema: #015c5d o Blanco */
+    margin-bottom: 30px;
+    margin-right: 0;
+}
+
+/* Zebra striping */
+/*
+ Posibilidad de estilizar columnas
+ col:first-child {background: #FF0}
+ col:nth-child(2n+3) {background: #CCC}
+*/
+tbody tr:nth-child(odd) {
+    background: #ffffffc0;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9f9f959; /*  #eeeeee; */
+}
+
+tbody tr:hover {
+    background: #015c5d39;
+}
+
+th,
+td {
+    vertical-align: top;
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+}
+/*
+    Table Alignment (MDN):
+    Next up, we'll deal with alignment of the different types of data inside their cells. Best practice dictates
+    that you should align text to the left and numbers to the right; the following CSS will achieve that,
+    so add it to the bottom of your CSS file now.
+
+    Content alignment to the right for cells containing numbers.
+    - Cell(1): Patient ID (number).
+    - Cell(3): Patient phone (number).
+
+    tr :nth-child(1),
+    tr :nth-child(3) {
+        text-align: right;
+        width: 15%;
+    }
+
+    Content alignment to the left for cells containing text.
+    - Cell(2): Patient name (text).
+    - Cell(4): Patient email (text).
+    tr :nth-child(2),
+    tr :nth-child(4) {
+        text-align: left;
+        width: 35%;
+    }
+
+    We should also make sure that our data items are aligned to the top of their cells, rather than the middle.
+    To achieve this, we can use the vertical-align property. Update your existing th, td rule to the following:
+
+        th,
+        td {
+            vertical-align: top;
+            padding: 0.3em;
+        }
+
+    * https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Tables
+*/
+/*
+Content alignment to the right for cells containing numbers.
+- Cell(1): Patient ID (number).
+- Cell(3): Patient phone (number).
+ */
+tr :nth-child(1),
+tr :nth-child(3) {
+    text-align: right;
+    width: 10%;
+}
+
+/*
+Content alignment to the left for cells containing text.
+- Cell(2): Patient name (text).
+- Cell(4): Patient email (text).
+*/
+tr :nth-child(2),
+tr :nth-child(4) {
+    text-align: left;
+    width: 35%;
+}
+
+/* Cell(5): Patient prescription (icon) */
+tr :nth-child(5) {
+    text-align: center;
+    width: 10%;
+}
+/*
+tr:hover {
+    background: #015c5d39;
+}
+*/
+
+table .prescription-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+table .prescription-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+table .prescription-btn:active {
+    transform: scale(0.95);
+}
+
+.today-btn {
+    margin-right: 10px;
+    padding: 10px;
+    background: #015c5d;
+}
+
+.date-picker {
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 13px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.noPatientRecord {
+    font-size: 16px;
+    color: grey;
+    font-style: italic;
+}

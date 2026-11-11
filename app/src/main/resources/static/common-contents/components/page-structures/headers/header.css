@@ -1,0 +1,169 @@
+header.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  align-self: stretch;
+  justify-content: space-between;
+  padding: var(--spacing-sp-20, 20px) var(--sds-size-space-800);
+  gap: 0 var(--sds-size-space-600);
+  min-height: 85px;
+
+  border-bottom: var(--border-width-1) solid var(--colors-grey-250);
+  background: var(--colors-white);
+}
+
+header .logo-section {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+
+  cursor: pointer;
+}
+
+/* TODO: revisar si poner sección de Logo dentro de un enlace */
+/*
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+*/
+
+header .logo-section .logo-img-heart {
+  width: 47px;
+  height: 43px;
+  flex-shrink: 0;
+  aspect-ratio: 47/43;
+  fill: var(--colors-blue-400, #00BBE5);
+}
+
+/* Logo text / slogan */
+header .logo-section .logo-text {
+  display: flex;
+
+  color: var(--colors-black, #000);
+  font-family: var(--font-family-alegreya-sc), serif;
+  font-size: var(--font-size-logo-text-header, 32px);
+  font-weight: var(--font-weight-bold);
+}
+
+.services-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px var(--sds-size-space-200);
+  flex: 1 0 0;
+  flex-wrap: wrap;
+  padding-bottom: 3px;
+
+  & a.services-nav-item {
+    position: relative;
+    padding: var(--sds-size-space-200);
+
+    color: var(--colors-blue-600, #007D99);
+    font-family: var(--sds-typography-body-font-family), sans-serif;
+    font-weight: var(--font-weight-semibold, 600);
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s ease-in-out;
+
+      content: '';
+      background-color: var(--colors-blue-600, #007D99);
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+
+    &.selected {
+      color: var(--colors-blue-800, #003E4C);
+
+      &::after {
+        transform: scaleX(1);
+        background-color: var(--colors-blue-800, #003E4C);
+      }
+    }
+  }
+}
+
+/* TODO: utilizar en vez de selected
+.services-nav-item:visited {
+    color: var(--colors-blue-800, #003E4C);
+    border-radius: var(--border-radius-0, 0);
+    border-bottom: var(--spacing-sp-4, 4px) solid var(--colors-blue-800, #003E4C);
+}
+/*
+.quick-services-btn {
+    display: flex;
+    padding: var(--spacing-sp-8, 8px) var(--spacing-sp-16, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: var(--border-radius-24, 24px);
+    border: 1px solid var(--colors-blue-800, #003E4C);
+    background: var(--colors-white, #FFF);
+}
+*/
+
+/*
+.login-btn {
+    display: flex;
+    padding: var(--spacing-sp-8, 8px) var(--spacing-sp-16, 16px);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: var(--border-radius-24, 24px);
+    background: var(--colors-blue-600, #007D99);
+}
+*/
+
+/* Nav links styling */
+/*
+nav a {
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: #015c5d;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #048788;
+}
+*/
+/* Responsive behavior */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /*
+  nav {
+      margin-top: 10px;
+  }
+
+  nav a {
+      margin-left: 0;
+      margin-right: 10px;
+  }
+
+  .logo-img {
+      height: 30px;
+  }
+
+  .logo-title {
+      font-size: 18px;
+  }
+  */
+
+}

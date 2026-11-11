@@ -1,0 +1,3 @@
+@import "./sections/controls-sections/dashboardControlsSectionsFactory.css";
+@import "./sections/contents-sections/dashboardContentsSectionsFactory.css";
+@import "../../components/modals/doctorModalV2.css";

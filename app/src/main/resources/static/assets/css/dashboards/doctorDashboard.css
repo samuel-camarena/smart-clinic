@@ -1,0 +1,153 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #003e3e; /* Dark teal color. */
+    margin-bottom: 50px;
+}
+
+button {
+    width: 200px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 0;
+    /* margin-top: 0px; */
+    font-size: 16px;
+    color: white;
+    background: #A62B1F; /* Sets a bold red color. */
+    cursor: pointer;
+}
+
+
+/*
+    - Retains the same red background to maintain branding.
+*/
+button:hover {
+    background: #A62B1F;
+}
+
+/*  Use a `16px` italic grey font to indicate no data gently. */
+p #noDataFoundP {
+    font-size: 16px;
+    color: grey;
+    font-style: italic;
+}
+
+/* TODO: combinar diferencias */
+.noPatientRecord {
+    font-size: 16px;
+    color: grey;
+    font-style: italic;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 40px;
+    /* align-items: center; */
+    /* justify-content: center; */
+    text-align: center;
+    background-image: url("../../images/index/index.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/*
+ Hasta aquí prácticamente son los estilos comunes a AdminDashboard. A partir de este puntos son los estilos particulares de DoctorDashboard
+ */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: sans-serif;
+}
+
+thead {
+    background: #33333310;
+    color: white;
+}
+
+.table-header {
+    font-size: 24px;
+    color: #015c5d;
+    margin-bottom: 30px;
+    margin-right: 0;
+}
+
+tbody tr:nth-child(odd) {
+    background: #ffffffc0;
+}
+
+tbody tr:nth-child(even) {
+    background: #f9f9f959;
+}
+
+tbody tr:hover {
+    background: #015c5d39;
+}
+
+td,
+th {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+table .prescription-btn {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+table .prescription-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+table .prescription-btn:active {
+    transform: scale(0.95);
+}
+
+.today-btn {
+    height: 50px;
+    margin-right: 10px;
+    padding: 10px;
+    background: #015c5d;
+}
+
+.date-picker {
+    /* height: 30px; */
+    height: auto;
+    width: auto;
+    margin-left: 10px;
+    /* margin-top: 13px; */
+    margin-bottom: 0;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+/*
+Let me know if you'd like a consolidated style guide for the entire HospitalCRM frontend.
+ */

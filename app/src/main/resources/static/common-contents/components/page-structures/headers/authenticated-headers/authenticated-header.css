@@ -1,0 +1,113 @@
+
+header .avatar-section {
+  display: inline-flex;
+  padding: var(--spacing-sp-4, 4px);
+  align-items: center;
+  gap: 12px;
+  position: relative;
+
+  cursor: pointer;
+  border-radius: var(--border-radius-24, 24px);
+  background: var(--colors-white, #FFF);
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.12);
+}
+
+header .avatar-section .avatar-portrait {
+  display: flex;
+  padding: var(--spacing-sp-0, 0);
+  align-items: center;
+  gap: 10px;
+}
+
+header .avatar-section .avatar-profile-img {
+  width: 30px;
+  height: 30px;
+  aspect-ratio: 1/1;
+
+  border-radius: 25px;
+  /* background: url("/assets/images/user-profiles/avatar-photos/admin_user-profile-photo_avatar-image.png") lightgray -32.472px 0.011px / 231.997% 234.58% no-repeat; */
+  /* background: url("/assets/images/user-profiles/avatar-photos/admin_user-profile-photo_avatar-image.png") no-repeat; */
+  background-repeat: no-repeat;
+}
+
+header .avatar-section .more-menu-container {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  padding: 4px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  aspect-ratio: 1/1;
+}
+
+header .avatar-section .more-menu-icon {
+  width: 4px;
+  height: 16px;
+  flex-shrink: 0;
+  aspect-ratio: 1/4;
+
+  fill: var(--colors-blue-600, #007D99);
+  /* background: url("/assets/images/common/menus/icons/menu-more-actions-vert_icon.svg"); */
+  background-repeat: no-repeat;
+}
+
+header .avatar-section .more-menu-icon:hover {
+  fill: red;
+}
+
+header .avatar-section .menu-dropdown {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  position: absolute;
+  top: 42px;
+  right: 0;
+  padding: var(--spacing-sp-16, 16px);
+  gap: 10px;
+  z-index: 1;
+  border-radius: var(--border-radius-24, 24px);
+  border: 1px solid var(--colors-grey-250);
+  background: var(--colors-white, #FFF);
+}
+
+header .avatar-section .menu-option-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  color: var(--colors-grey-500, #7F7F7F);
+
+  &:hover {
+    color: var(--colors-black, #000);
+  }
+}
+
+header .avatar-section .menu-option {
+  /* color: var(--colors-grey-500, #7F7F7F); */
+  color: inherit;
+}
+
+header .avatar-section .menu-option:hover {
+  /* color: var(--colors-black, #000); */
+  color: inherit;
+  /* font-weight: var(--font-weight-black, 800); */
+}
+
+header .avatar-section .menu-option-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+
+  fill: var(--colors-grey-500, #7F7F7F);
+}
+
+header .avatar-section .menu-dropdown-separator {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background: #e7e7e7;
+}

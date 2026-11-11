@@ -1,0 +1,103 @@
+/* Kebab Menu of Header of Big resource cards */
+.card {
+  & .inline-resource-id-container > .kebab-menu {
+    display: flex;
+    position: relative;
+
+    & .toggler-menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        padding: 4px 10px;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+
+      &:hover {
+        background-color: var(--colors-grey-250, #BFBFBF);
+        border-radius: 50%;
+      }
+    }
+
+    & .icon {
+      width: 4px;
+      height: 16px;
+      flex-shrink: 0;
+      aspect-ratio: 1/4;
+
+      fill: var(--colors-grey-250, #BFBFBF);
+      background-repeat: no-repeat;
+
+      &:hover {
+        fill: red;
+      }
+    }
+
+    & .dropdown-menu {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      gap: 10px;
+      position: absolute;
+      top: 28px;
+      right: 0;
+      padding: var(--spacing-sp-16, 16px);
+      visibility: hidden;
+      z-index: 1;
+      border-radius: var(--border-radius-24, 24px);
+      border: 1px solid var(--colors-grey-250);
+      background: var(--colors-white, #FFF);
+      box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.12);
+
+      &.show {
+        visibility: visible;
+      }
+
+      & .option-container {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        cursor: pointer;
+        text-wrap: nowrap;
+        width: 100%;
+        color: var(--colors-grey-500, #7F7F7F);
+
+        &:hover {
+          color: var(--colors-black, #000);
+          /* font-weight: var(--font-weight-black, 800); */
+        }
+
+        & .icon {
+          width: 18px;
+          height: 18px;
+          flex-shrink: 0;
+          aspect-ratio: 1/1;
+
+          fill: var(--colors-grey-500, #7F7F7F);
+        }
+
+        & .link {
+          color: inherit;
+
+          /*
+          &:hover {
+            color: var(--colors-black, #000);
+          }
+          */
+        }
+      }
+
+      & .separator {
+        width: 100%;
+        border: none;
+        height: 1px;
+        background: #e7e7e7;
+
+      }
+    }
+  }
+}

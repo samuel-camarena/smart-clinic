@@ -33,7 +33,7 @@ public class DatabaseIntegrityConstraintTests {
         expectedDoc.setEmail(nonUniqueEmail);
     
         try {
-            doctorRepo.register(expectedDoc);
+            doctorRepo.save(expectedDoc);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

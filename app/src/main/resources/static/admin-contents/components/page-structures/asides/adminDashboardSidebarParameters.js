@@ -1,0 +1,1 @@
+// Parametrización del componente Estructural Aside Main Sidebar.

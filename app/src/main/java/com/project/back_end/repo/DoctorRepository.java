@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * This repository extends JpaRepository<Doctor, Long>, which gives it basic CRUD functionality.
+ * This repository extends JpaRepository<Doctor, Long>, which gives it basics CRUD functionality.
  * - This allows the repository to perform operations like save, deleteDoctor, updateDoctor, and find without
  *   needing to implement these methods manually.
  * - JpaRepository also includes features like pagination and sorting.
@@ -23,6 +23,9 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     
     @EntityGraph(attributePaths = {"availableTimes"})
     List<Doctor> findAll();
+    
+    @EntityGraph(attributePaths = {"availableTimes"})
+    Optional<Doctor> findById(long id);
     
     /**
      * This method retrieves a Doctor by their email.

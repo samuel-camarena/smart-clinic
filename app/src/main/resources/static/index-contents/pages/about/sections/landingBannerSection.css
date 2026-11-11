@@ -1,0 +1,65 @@
+
+.search-pro-section {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+
+  background: url("/assets/images/index/about/sections/landing-banner/best-professional-section_about-page_index_smartclinic.png");
+  background-size: 100% 491px;
+  aspect-ratio: 1980 / 491;
+  /* background: url(<path-to-image>) lightgray -3.627px -344.304px / 100.946% 201.701% no-repeat; */
+
+  & .search-container {
+    display: flex;
+    flex-direction: column;
+    /* padding: 0 var(--spacing-sp-44, 44px); */
+    margin-left: 175px;
+    margin-block: auto;
+    gap: 25px;
+    white-space: nowrap;
+
+    & header {
+      margin-block: 0;
+
+      & .title {
+        margin-block: inherit;
+        line-height: 120%;
+        letter-spacing: -1.32px;
+      }
+    }
+
+    & .search-bar-container {
+      display: flex;
+      align-items: center;
+
+      & .search-bar-input {
+        z-index: 1;
+        border-radius: var(--border-radius-48, 48px);
+        border: 1px solid var(--colors-blue-600, #007D99);
+        background: #FFF;
+        box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.10);
+        padding: var(--spacing-sp-12, 12px) var(--spacing-sp-24, 24px);
+        color: var(--colors-blue-800, #003E4C);
+        font-size: var(--sds-typography-subtitle-size-base);
+      }
+
+      & .loupe-img {
+        z-index: 2;
+        width: 30px;
+        height: 30px;
+        margin-left: -42px;
+        aspect-ratio: 1/1;
+        fill: var(--colors-blue-800, #003E4C);
+      }
+    }
+  }
+}
+
+/*
+.search-pro-section .background-img {
+    width: 598px;
+    height: 635px;
+    background: url("../../assets/images/index/Rectangle 67.png") lightgray -378px -0.2px / 220% 100% no-repeat;
+}
+*/

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.svg}" />
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/header.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/footer.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/modals/shared-modals/modal.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/modals/adminModal.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/components/doctorCard.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/dashboards/adminDashboard.css}">
+    <script th:src="@{/js/components/footer.js}" defer></script>
+</head>
+<body onload="RoleManager.renderContent()">
+<div class="container">
+    <div class="wrapper">
+        <header id="header"></header>
+        <main id="main" class="main-content">
+            <input id="filterByNameSearchBar" class="searchBar" type="text" placeholder="Search by doctor's name ...">
+            <div class="filter-wrapper" style="">
+                <select id="filterByTimePeriodSelect" class="filter-select" >
+                    <option value="">Sort by Time</option>
+                    <option value="AM">AM</option>
+                    <option value="PM">PM</option>
+                </select>
+                <select id="filterBySpecialtySelect" class="filter-select" >
+                    <option value="">Filter by Specialty</option>
+                    <option value="Cardiologist">Cardiologist</option>
+                    <option value="Dermatologist">Dermatologist</option>
+                    <option value="Neurologist">Neurologist</option>
+                    <option value="Pediatrician">Pediatrician</option>
+                    <option value="Orthopedic">Orthopedic</option>
+                    <option value="Gynecologist">Gynecologist</option>
+                    <option value="Psychiatrist">Psychiatrist</option>
+                    <option value="Dentist">Dentist</option>
+                    <option value="Ophthalmologist">Ophthalmologist</option>
+                    <option value="Ent">ENT Specialist</option>
+                    <option value="Urologist">Urologist</option>
+                    <option value="Oncologist">Oncologist</option>
+                    <option value="Gastroenterologist">Gastroenterologist</option>
+                    <option value="General">General Physician</option>
+                </select>
+            </div>
+            <div id="content"></div>
+        </main>
+        <footer id="footer"></footer>
+    </div>
+</div>
+<div id="patientDashboardModal" class="modal">
+    <div id="modalContent" class="modal-content">
+        <span id="closeModalBtn" class="close">&times;</span>
+        <header id="modalHeader" class="modal-header"></header>
+        <div id="modalBody" class="modal-body"></div>
+        <footer id="modalFooter" class="modal-footer"></footer>
+    </div>
+</div>
+<script type="module" th:src="@{/js/dashboards/patientDashboard.js}" defer></script>
+<!-- <script type="module" th:src="@{/js/components/entityCard.js}" defer></script>-->
+</body>
+</html>

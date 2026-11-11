@@ -1,7 +1,7 @@
 // loggedPatient.js 
-import { getDoctors } from './services/doctorServices.js';
-import { createDoctorCard } from './components/doctorCard.js';
-import { filterDoctors } from './services/doctorServices.js';
+import { getAllDoctors } from './doctor-contents/dashboard/services/doctorService.js';
+import { createDoctorCard } from './components/entityCard.js';
+import { filterDoctors } from './doctor-contents/dashboard/services/doctorService.js';
 import { bookAppointment } from './services/appointmentRecordService.js';
 
 
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function loadDoctorCards() {
-  getDoctors()
+  getAllDoctors()
     .then(doctors => {
       const contentDiv = document.getElementById("content");
       contentDiv.innerHTML = "";

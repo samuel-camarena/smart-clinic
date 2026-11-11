@@ -1,0 +1,77 @@
+/* Main Card style */
+.doctor-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width:auto;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.doctor-card:hover {
+    transform: scale(1.02);
+}
+
+.doctor-info {
+    padding: 12px;
+    flex-grow: 1;
+}
+
+.doctor-info h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #015c5d;
+}
+
+.doctor-info p {
+    margin: 20px 0px;
+    font-size: 14px;
+    color: #555;
+}
+
+.doctor-info .info-relevant {
+    color: #048788;
+    font-weight: bold;
+}
+
+.doctor-info div {
+    margin-bottom: 5px;
+}
+
+.doctor-info table {
+    margin: auto;
+}
+
+.doctor-info td {
+    border-bottom: 1px solid;
+    padding: 2px 8px;
+    color: gray;
+}
+
+.card-actions {
+    background-color: #e28282;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-actions:hover {
+    background-color: #d26969;
+}
+
+.card-actions button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card-actions button:hover {
+    color: #fff;
+    border-color: #015c5d;
+}

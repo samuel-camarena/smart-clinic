@@ -12,7 +12,7 @@
 	<artifactId>back-end</artifactId>
 	<version>1</version>
 	<name>back-end</name>
-	<description>SmartCare CRM</description>
+	<description>SmartClinic CRM</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -33,6 +33,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 	<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -93,7 +97,6 @@
             <version>0.12.6</version>
             <scope>runtime</scope>
         </dependency>
-
     </dependencies>
 
 	<build>

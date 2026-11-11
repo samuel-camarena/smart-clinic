@@ -1,5 +1,6 @@
 // patientAppointment.js
 import { getPatientAppointments, getPatientData, filterAppointments } from "./services/patientServices.js";
+import * as RoleManager from "./utils/roleManager.js";
 
 const tableBody = document.getElementById("patientTableBody");
 const token = localStorage.getItem("token");
